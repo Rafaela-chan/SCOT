@@ -7,6 +7,9 @@ class Usuario{
     private $idAcesso;
     private $idTipo;
     private $cpf;
+    private $saram;
+    private $nomeGuerra;
+    private $patente;
 
     public function getIdUsuario(){
         return $this->idUsuario;
@@ -30,6 +33,18 @@ class Usuario{
 
     public function getCPF(){
         return $this->cpf;
+    }
+
+    public function getSaram(){
+        return $this->saram;
+    }
+
+    public function getNomeGuerra(){
+        return $this->nomeGuerra;
+    }
+
+    public function getPatente(){
+        return $this->patente;
     }
     
     public function setIdUsuario($param){
@@ -56,6 +71,9 @@ class Usuario{
         $this->cpf = $param;
     }
 
+    public function setSaram($param){
+        $this->saram = $param;
+    }
     
     public function logar($user,$pass){
         try{
@@ -74,19 +92,20 @@ class Usuario{
 
             $stream = stream_context_create($options);
             $result = json_decode((file_get_contents($url_path, false, $stream)), true);
+            
             //var_dump($result);
             if($result['valid']){
-                foreach($result as $v) {
-                    $this->setNomeCompleto(($v['nomeCompleto']));
+                $this->setCPF(($result['cpf']));
+                $this->setSaram(($result['saram']));
+                $this->setNomeCompleto(($result['nomeCompleto']));
+                $this->setNomeGuerra(($result['nomeGuerra']));
+                $this->setPatente(($result['patente']));
+                $this->setSaram(($result['om']));
                     
-                }
-
-                header("Location: ../../");
             }
-    
-                                    
-
-        }catch(PDOException $e) {
+            header("Location: ../../");
+            
+        }catch(Exception $e) {
             echo "Erro: " . $e->getMessage();
         }
     }
@@ -121,10 +140,7 @@ session_start();
 if(isset($_POST['submit'])){
     $usuario = new Usuario;
     $user = $_POST['user'];
-    //$pass = sha1($_POST['password']);
     $pass = $_POST['password'];
-    $_SESSION['user'] = $user;
-    $_SESSION['pass'] = $pass;
     $log = $usuario->logar($user,$pass);
     if($log){
         $_SESSION['logado'] = true;

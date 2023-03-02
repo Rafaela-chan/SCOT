@@ -15,13 +15,10 @@ ob_start();
 	$saida = ob_get_contents();
 ob_end_clean();
 
-$tplPronto = str_replace('{{area_dinamica}}', $saida, $template);
+$tplPronto = str_replace(
+	array('{{area_dinamica}}',"$saida", $template),
+);
+
+$tplPronto = str_replace(array('{{area_dinamica}}', '{{patente}}', '{{nomeGuerra}}'), array("$saida", ""), $template;
+
 echo $tplPronto;
-
-$user = new Usuario;
-$user->verificarLogin();
-if (isset($_GET['sair']) == 1) {
-    $user->deslogar();
-}
-
-
