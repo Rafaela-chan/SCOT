@@ -39,7 +39,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Entrar</h1>
                                     </div>
-                                    <form action="app/Controller/Usuario.php" class="user" method="post" id="loginForm">
+                                    <form action="index.php" class="user" method="post" id="loginForm">
                                         <div class="form-group">
                                             <input type="user" class="form-control form-control-user"
                                                 name="user" id="user" aria-describedby="emailHelp"

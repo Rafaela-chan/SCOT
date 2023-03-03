@@ -3,7 +3,13 @@
 	{
 		public function start($urlGet)
 		{	
-			$acao = 'index';
+			$funcao = 'index';
+			if(isset($urlGet['acao'])){
+				$acao = $urlGet['acao'];
+			} else {
+				$acao = null;
+			}
+
 			if (isset($urlGet['pagina'])){
 				$controller = ucfirst($urlGet['pagina'].'Controller');
 			} else {
@@ -15,7 +21,7 @@
 			}
 
 
-			call_user_func_array(array(new $controller, $acao), array());
+			call_user_func_array(array(new $controller, $funcao), array($acao));
 		}
 	}
 ?>

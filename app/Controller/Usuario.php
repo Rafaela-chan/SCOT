@@ -75,6 +75,14 @@ class Usuario{
         $this->saram = $param;
     }
     
+    public function setNomeGuerra($param){
+        $this->nomeGuerra = $param;
+    }
+
+    public function setPatente($param){
+        $this->patente = $param;
+    }
+
     public function logar($user,$pass){
         try{
             $url_path = 'http://apps.gapls.intraer/scati/resource/v1/ldap';
@@ -92,7 +100,16 @@ class Usuario{
 
             $stream = stream_context_create($options);
             $result = json_decode((file_get_contents($url_path, false, $stream)), true);
-            
+           
+            /*$result = array(
+                        'cpf' => "15570391606",
+                        'saram' => "7401957",
+                        'nomeCompleto' => "Leandro Lucas Domingos",
+                        'nomeGuerra' => "Leandro Lucas",
+                        'patente' => "S2",
+                        'om' => "CIAAR"
+            );*/
+  
             //var_dump($result);
             if($result['valid']){
                 $this->setCPF(($result['cpf']));
@@ -103,7 +120,7 @@ class Usuario{
                 $this->setSaram(($result['om']));
                     
             }
-            header("Location: ../../");
+            header("Location: ?pagina=home");
             
         }catch(Exception $e) {
             echo "Erro: " . $e->getMessage();
@@ -114,12 +131,12 @@ class Usuario{
         session_destroy();
         echo "<script> alert('Você deslogou.'); window.location.href='../../../../iead-conteudistas/sistemas/login.php';</script>";
     }
-    public function verificarLogin(){
+    /*public function verificarLogin(){
         $loginTeste = $_SESSION['logado'];
         if($loginTeste == false){
             echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../../../../sistema/login.php';</script>";
         }
-    }
+    }*/
 
     public function atualizar($cpf, $nomeCompleto, $nomeGuerra, $posto, $saram){
         
@@ -136,15 +153,4 @@ if($_GET['acao']=='logar2'){
     $leandro->logar('15570391606', 'iesfsad');
 }
 */
-session_start();
-if(isset($_POST['submit'])){
-    $usuario = new Usuario;
-    $user = $_POST['user'];
-    $pass = $_POST['password'];
-    $log = $usuario->logar($user,$pass);
-    if($log){
-        $_SESSION['logado'] = true;
-        header('Location: sistema/');
-    }
-}
 ?>
