@@ -1,8 +1,8 @@
 <?php
 
 require_once 'app/Core/Core.php';
-require_once 'app/Controller/Usuario.php';
 
+require_once 'app/Controller/Usuario.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/ErroController.php';
 require_once 'app/Controller/ConteudistaController.php';
@@ -27,7 +27,7 @@ ob_start();
 
 	$saida = ob_get_contents();
 ob_end_clean();
-$patente = 'IECE TWO';
+$patente = 'S2';
 $nomeGuerra = $usuario->getNomeGuerra();
 //$tplPronto = str_replace('{{area_dinamica}}',"$saida", $template);
 

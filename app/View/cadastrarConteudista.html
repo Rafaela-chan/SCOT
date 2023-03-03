@@ -1,7 +1,51 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <div class="text-center">
-        <p class="lead text-gray-800 mb-5">AAAAHHHHHHHHHHHH </p>
-    </div>
-
+    <h1 class="h3 mb-2 text-gray-800">Conteudistas</h1><hr>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Cadastrar</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <form method="post" action="../model/backend_professor.php">
+                        <div class="row">
+                            <div class="col">
+                                <p>CPF</p>
+                                <input type="text" class="form-control" id="email" placeholder="Digite o CPF" name="cpf">
+                            </div>
+                            <div class="col">
+                                <p>Nome Completo</p>
+                                <input type="text" class="form-control" placeholder="Nome Completo" name="nome_completo">
+                            </div>
+                            <div class="col">
+                                <p>Nome de Guerra</p>
+                                <input type="text" class="form-control" placeholder="Nome de Guerra (Em caso de militares)" name="nome_guerra">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                OM
+                                <select class="form-control" name="id_om">
+                                    <option value="0">VAZIO</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <br>
+                                <button type="button" class="form-control btn btn-warning" data-toggle="modal" data-target="#myModal">Adicionar OM</button>
+                            </div>
+                        </div>
+                        <!-- Estruta dos botões -->
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="submit" value="Cadastrar Conteudista" style="margin-top: 30px;" class="btn btn-success form-control">
+                            </div>
+                            <div class="col">
+                                <a href="../../.../../../../iead-conteudistas/sistemas/index.php" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao menu</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </div>
