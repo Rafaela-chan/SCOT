@@ -1,0 +1,44 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Conteudistas</h1>
+    <hr>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Vincular Conteudista X Curso</h6>
+        </div>
+        <div class="card-body mt-5">
+            <div class="chart-area">
+                <div class="container-fluid">
+                    <form method="post" action="../../model/conteudistas/backend_vincular.php">
+                        <div class="row">
+                            <div class="col">
+                                Nome do Conteudista
+                                <select class="form-control" name="id_conteudista">
+                                    <option value="0">VAZIO</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                Curso a ser vinculado
+                                <select class="form-control" name="id_curso">
+                                    <option value="0"> VAZIO </option>
+                                </select>
+                            </div>
+                            <br>
+                            <!-- Estruta dos botões -->
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="submit" value="Vincular" style="margin-top: 25px;"
+                                        class="btn btn-success form-control">
+                                </div>
+                                <div class="col">
+                                    <a href="" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao
+                                        menu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
