@@ -6,6 +6,8 @@ require_once 'app/Controller/Usuario.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/ErroController.php';
 require_once 'app/Controller/ConteudistasController.php';
+require_once 'app/Controller/PerfilController.php';
+require_once 'app/Controller/DeslogarController.php';
 
 $usuario = new Usuario;
 
@@ -33,14 +35,50 @@ ob_start();
 
 	$saida = ob_get_contents();
 ob_end_clean();
-$patente = $usuario->getPatente();
+
 $nomeGuerra = $usuario->getNomeGuerra();
- $tplPronto = str_replace(array(
-	'{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
-),
- array( 
-	$saida, $patente, $nomeGuerra
- ), $template)
+$patente = $usuario->getPatente();
+$nomeCompleto = $usuario->getNomeCompleto();
+$om = $usuario->getOM();
+$saram = $usuario->getSaram();
+$cpf = $usuario->getCPF();
+
+if(isset($_GET['url'])){    if($_GET['url'] == 'perfil'){
+        $saidaPronto = str_replace(array(
+            '{{cpf}}', '{{nome_completo}}',  '{{nome_guerra}}', '{{om}}', '{{saram}}'
+        ),
+        array(
+            $cpf, $nomeCompleto, $nomeGuerra, $om, $saram
+        ),
+        $saida
+        );
+
+        $tplPronto = str_replace(array(
+            '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+        ),
+        array( 
+            $saidaPronto, $patente, $nomeGuerra
+        ), $template);
+    }else{
+        $tplPronto = str_replace(array(
+            '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+        ),
+        array( 
+            $saida, $patente, $nomeGuerra
+        ), $template);
+        
+    }
+}else{
+    $tplPronto = str_replace(array(
+        '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+    ),
+    array( 
+        $saida, $patente, $nomeGuerra
+    ), $template);
+    
+}
+
+
 ;
 echo $tplPronto;
 

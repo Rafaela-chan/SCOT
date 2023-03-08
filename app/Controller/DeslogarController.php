@@ -1,6 +1,6 @@
 <?php
 	
-	Class PerfilController
+	Class DeslogarController
 	{
 		public function index($acao)
 		{

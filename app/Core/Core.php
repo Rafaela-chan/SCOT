@@ -15,7 +15,7 @@
 			
 			if(isset($url)){
 				$controller = ucfirst($url[0].'Controller');
-				var_dump($controller);
+				//var_dump($controller);
 				if(isset($url[1])){
 					$acao = $url[1];
 				}else{

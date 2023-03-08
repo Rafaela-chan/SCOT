@@ -10,6 +10,7 @@ class Usuario{
     private $saram;
     private $nomeGuerra;
     private $patente;
+    private $om;
 
     public function getIdUsuario(){
         return $this->idUsuario;
@@ -45,6 +46,10 @@ class Usuario{
 
     public function getPatente(){
         return $this->patente;
+    }
+
+    public function getOM(){
+        return $this->om;
     }
     
     public function setIdUsuario($param){
@@ -83,6 +88,9 @@ class Usuario{
         $this->patente = $param;
     }
 
+    public function setOM($param){
+        $this->om = $param;
+    }
     public function logar($user,$pass){
         try{
             $url_path = 'http://apps.gapls.intraer/scati/resource/v1/ldap';
@@ -108,10 +116,11 @@ class Usuario{
                 $this->setNomeCompleto(($result['nomeCompleto']));
                 $this->setNomeGuerra(($result['nomeGuerra']));
                 $this->setPatente(($result['patente']));
-                $this->setSaram(($result['om']));
+                $this->setOM(($result['om']));
+                return true;
+            }else{
+                echo "<script> alert('Usuário ou senha incorreto.'); window.location.href='../../../../SCOT/login.php';</script>";
             }
-            return true;
-            
             
         }catch(Exception $e) {
             echo "Erro: " . $e->getMessage();
