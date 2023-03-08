@@ -5,19 +5,25 @@ require_once 'app/Core/Core.php';
 require_once 'app/Controller/Usuario.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/ErroController.php';
-require_once 'app/Controller/ConteudistaController.php';
+require_once 'app/Controller/ConteudistasController.php';
 
-session_start();
 $usuario = new Usuario;
+
 if(isset($_POST['submit'])){
-    $user = $_POST['user'];
-    $pass = $_POST['password'];
-    $log = $usuario->logar($user,$pass);
-    if($log){
-        $_SESSION['logado'] = true;
-        header('Location: sistema/');
-    }
+    $_SESSION['user'] = $_POST['user'];
+    $_SESSION['pass'] = $_POST['password'];
+    $_SESSION['logar'] = true;
 }
+
+if(isset($_SESSION['logar'])){
+    $user = $_SESSION['user'];
+    $pass = $_SESSION['pass'];
+    $_SESSION['logado'] = true;
+    $usuario->logar($user, $pass);
+}
+
+$usuario->verificarLogin();
+
 
 $template = file_get_contents('app/Template1/estrutura.html');
 
@@ -27,10 +33,8 @@ ob_start();
 
 	$saida = ob_get_contents();
 ob_end_clean();
-$patente = 'S2';
+$patente = $usuario->getPatente();
 $nomeGuerra = $usuario->getNomeGuerra();
-//$tplPronto = str_replace('{{area_dinamica}}',"$saida", $template);
-
  $tplPronto = str_replace(array(
 	'{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
 ),

@@ -100,15 +100,6 @@ class Usuario{
 
             $stream = stream_context_create($options);
             $result = json_decode((file_get_contents($url_path, false, $stream)), true);
-           
-            /*$result = array(
-                        'cpf' => "15570391606",
-                        'saram' => "7401957",
-                        'nomeCompleto' => "Leandro Lucas Domingos",
-                        'nomeGuerra' => "Leandro Lucas",
-                        'patente' => "S2",
-                        'om' => "CIAAR"
-            );*/
   
             //var_dump($result);
             if($result['valid']){
@@ -118,9 +109,9 @@ class Usuario{
                 $this->setNomeGuerra(($result['nomeGuerra']));
                 $this->setPatente(($result['patente']));
                 $this->setSaram(($result['om']));
-                    
             }
-            header("Location: ?pagina=home");
+            return true;
+            
             
         }catch(Exception $e) {
             echo "Erro: " . $e->getMessage();
@@ -129,28 +120,27 @@ class Usuario{
 
     public function deslogar(){
         session_destroy();
-        echo "<script> alert('Você deslogou.'); window.location.href='../../../../iead-conteudistas/sistemas/login.php';</script>";
+        echo "<script> alert('Você deslogou.'); window.location.href='../../../../SCOT/login.php';</script>";
     }
-    /*public function verificarLogin(){
-        $loginTeste = $_SESSION['logado'];
-        if($loginTeste == false){
-            echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../../../../sistema/login.php';</script>";
+
+    public function verificarLogin(){
+        if(isset($_SESSION['logado'])){
+            $loginTeste = $_SESSION['logado'];
+            return true;
+            if($loginTeste == null || $loginTeste == false){
+                echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../../SCOT/login.php';</script>";
+                return false;
+            }
+        }else{
+            echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../../SCOT/login.php';</script>";
         }
-    }*/
+    }
 
     public function atualizar($cpf, $nomeCompleto, $nomeGuerra, $posto, $saram){
         
     }
 }
 
-/*
-if($_GET['acao']=='logar'){
-    $leandro = new Usuario;
-    $leandro->logar('15570391606', 'iead');
-}
-if($_GET['acao']=='logar2'){
-    $leandro = new Usuario;
-    $leandro->logar('15570391606', 'iesfsad');
-}
-*/
+session_start();
+
 ?>

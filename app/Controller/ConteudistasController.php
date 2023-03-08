@@ -1,13 +1,13 @@
 <?php
 	
-		Class ConteudistaController
+		Class ConteudistasController
 		{
 			public function index($acao)
 			{
                 try{
                     $this->testeAcao($acao);
                 } catch(Exception $e) {
-                    header('Location: ?pagina=erro');
+                    header('Location: /SCOT/erro/');
                 }   
 			}
 
