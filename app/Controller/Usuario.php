@@ -108,7 +108,7 @@ class Usuario{
 
             $stream = stream_context_create($options);
             $result = json_decode((file_get_contents($url_path, false, $stream)), true);
-  
+            $_SESSION['mensagem'] = " ";                        
             //var_dump($result);
             if($result['valid']){
                 $this->setCPF(($result['cpf']));
@@ -118,8 +118,10 @@ class Usuario{
                 $this->setPatente(($result['patente']));
                 $this->setOM(($result['om']));
                 return true;
+
             }else{
-                echo "<script> alert('Usuário ou senha incorreto.'); window.location.href='../../../../SCOT/login.php';</script>";
+                $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'>Usuário ou senha incorretos!</div>";                
+                header("Location: ../../../../SCOT/deslogar");
             }
             
         }catch(Exception $e) {
@@ -129,7 +131,7 @@ class Usuario{
 
     public function deslogar(){
         session_destroy();
-        echo "<script> alert('Você deslogou.'); window.location.href='../../../../SCOT/login.php';</script>";
+        echo "<script> alert('Você deslogou.'); window.location.href='../../../../SCOT/deslogar';</script>";
     }
 
     public function verificarLogin(){
@@ -137,11 +139,11 @@ class Usuario{
             $loginTeste = $_SESSION['logado'];
             return true;
             if($loginTeste == null || $loginTeste == false){
-                echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../../SCOT/login.php';</script>";
+                echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='SCOT/deslogar';</script>";
                 return false;
             }
         }else{
-            echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../../SCOT/login.php';</script>";
+            echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../SCOT/deslogar';</script>";
         }
     }
 

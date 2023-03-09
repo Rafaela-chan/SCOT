@@ -1,11 +1,7 @@
 <?php
 	Class Core
 	{
-		public function __construct()
-		{
-
-		}
-
+	
 		public function start($urlGet)
 		{	
 			$funcao = 'index';

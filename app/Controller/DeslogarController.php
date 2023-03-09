@@ -4,8 +4,9 @@
 	{
 		public function index($acao)
 		{
+			
 			session_destroy();
-			header('Location: SCOT/login.php');
+			header('Location: app/View/login.html');
 			
 		}
 	}
