@@ -7,6 +7,9 @@
 			$funcao = 'index';
 			if(isset($urlGet['url'])){
 				$url = explode('/', $urlGet['url']);
+				if($url[0] == 'usuario'){
+					$funcao = $url[1];
+				}
 			}
 			
 			if(isset($url)){

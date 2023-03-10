@@ -1,6 +1,6 @@
 <?php
 
-class Usuario{
+class UsuarioController{
     private $idUsuario;
     private $nomeCompleto;
     private $posto;
@@ -11,6 +11,7 @@ class Usuario{
     private $nomeGuerra;
     private $patente;
     private $om;
+    private $status;
 
     public function getIdUsuario(){
         return $this->idUsuario;
@@ -51,7 +52,10 @@ class Usuario{
     public function getOM(){
         return $this->om;
     }
-    
+    public function getStatus(){
+        return $this->status;
+    }
+
     public function setIdUsuario($param){
         $this->idUsuario = $param;
     }
@@ -91,6 +95,11 @@ class Usuario{
     public function setOM($param){
         $this->om = $param;
     }
+
+    public function setStatus($param){
+        $this->status = $param;
+    }
+    
     public function logar($user,$pass){
         try{
             $url_path = 'http://apps.gapls.intraer/scati/resource/v1/ldap';
@@ -107,8 +116,7 @@ class Usuario{
                                     ));
 
             $stream = stream_context_create($options);
-            $result = json_decode((file_get_contents($url_path, false, $stream)), true);
-            $_SESSION['mensagem'] = " ";                        
+            $result = json_decode((file_get_contents($url_path, false, $stream)), true);                      
             //var_dump($result);
             if($result['valid']){
                 $this->setCPF(($result['cpf']));
@@ -118,10 +126,13 @@ class Usuario{
                 $this->setPatente(($result['patente']));
                 $this->setOM(($result['om']));
                 return true;
-
+                
             }else{
+                session_start();
+                $_SESSION['deslogado'] = false;
                 $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'>Usuário ou senha incorretos!</div>";                
                 header("Location: ../../../../SCOT/deslogar");
+                session_destroy();
             }
             
         }catch(Exception $e) {
@@ -131,20 +142,25 @@ class Usuario{
 
     public function deslogar(){
         session_destroy();
-        echo "<script> alert('Você deslogou.'); window.location.href='../../../../SCOT/deslogar';</script>";
+        $this->setStatus('deslogado');
+        header('Location: ../login.php');
     }
 
     public function verificarLogin(){
         if(isset($_SESSION['logado'])){
             $loginTeste = $_SESSION['logado'];
             return true;
-            if($loginTeste == null || $loginTeste == false){
-                echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='SCOT/deslogar';</script>";
-                return false;
-            }
-        }else{
-            echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../SCOT/deslogar';</script>";
+            $this->setStatus('logado');
         }
+        if($loginTeste == null || $loginTeste == false ){ 
+                $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                header('Location: ../../SCOT/login.php');
+                return false;
+        }elseif($this->getStatus()=='deslogado'){
+                $_SESSION['mensagem'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">Deslogado com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                header('Location: ../../SCOT/login.php');
+            }
+        
     }
 
     public function atualizar($cpf, $nomeCompleto, $nomeGuerra, $posto, $saram){

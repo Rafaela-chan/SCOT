@@ -3,7 +3,7 @@
 require_once 'app/Core/Core.php';
 
 require_once 'app/Controller/LoginController.php';
-require_once 'app/Controller/Usuario.php';
+require_once 'app/Controller/UsuarioController.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/ErroController.php';
 require_once 'app/Controller/ConteudistasController.php';
@@ -11,7 +11,7 @@ require_once 'app/Controller/PerfilController.php';
 require_once 'app/Controller/DeslogarController.php';
 
 $template = file_get_contents('app/Template1/estrutura.html');
-$usuario = new Usuario;
+$usuario = new UsuarioController;
 
 
 ob_start();
@@ -25,19 +25,14 @@ if(isset($_POST['submit'])){
     $_SESSION['user'] = $_POST['user'];
     $_SESSION['pass'] = $_POST['password'];
     $_SESSION['logar'] = true;
-    
 }
 
 if(isset($_SESSION['logar'])){
     $user = $_SESSION['user'];
     $pass = $_SESSION['pass'];
-    $_SESSION['logado'] = true;
     $usuario->logar($user, $pass);
 }
-
-
 $usuario->verificarLogin();
-
 $nomeGuerra = $usuario->getNomeGuerra();
 $patente = $usuario->getPatente();
 $nomeCompleto = $usuario->getNomeCompleto();
@@ -82,5 +77,5 @@ if(isset($_GET['url'])){
 } ;
 
 echo $tplPronto;
-
+?>
 
