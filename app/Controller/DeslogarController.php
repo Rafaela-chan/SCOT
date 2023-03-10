@@ -6,7 +6,7 @@
 		{
 			
 			session_destroy();
-			header('Location: app/View/login.html');
+			header('Location: login.php');
 			
 		}
 	}

@@ -2,6 +2,7 @@
 
 require_once 'app/Core/Core.php';
 
+
 require_once 'app/Controller/Usuario.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/ErroController.php';
@@ -21,12 +22,6 @@ ob_start();
 ob_end_clean();
 
 if(isset($_POST['submit'])){
-    $_SESSION['mensagem'] = "teste";
-    $templateLogin = file_get_contents('app/View/login.html');
-    $login = str_replace('{{mensagem}}', $_SESSION['mensagem'] , $templateLogin);
-    if($_SESSION['logado'] == false){
-        echo $login;
-    }
     $_SESSION['user'] = $_POST['user'];
     $_SESSION['pass'] = $_POST['password'];
     $_SESSION['logar'] = true;
