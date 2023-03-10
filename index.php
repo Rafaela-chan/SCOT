@@ -2,6 +2,7 @@
 
 require_once 'app/Core/Core.php';
 
+require_once 'app/Controller/LoginController.php';
 require_once 'app/Controller/Usuario.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/ErroController.php';
@@ -9,12 +10,22 @@ require_once 'app/Controller/ConteudistasController.php';
 require_once 'app/Controller/PerfilController.php';
 require_once 'app/Controller/DeslogarController.php';
 
+$template = file_get_contents('app/Template1/estrutura.html');
 $usuario = new Usuario;
+
+
+ob_start();
+	$core = new Core;
+	$core->start($_GET);
+
+	$saida = ob_get_contents();
+ob_end_clean();
 
 if(isset($_POST['submit'])){
     $_SESSION['user'] = $_POST['user'];
     $_SESSION['pass'] = $_POST['password'];
     $_SESSION['logar'] = true;
+    
 }
 
 if(isset($_SESSION['logar'])){
@@ -24,17 +35,8 @@ if(isset($_SESSION['logar'])){
     $usuario->logar($user, $pass);
 }
 
+
 $usuario->verificarLogin();
-
-
-$template = file_get_contents('app/Template1/estrutura.html');
-
-ob_start();
-	$core = new Core;
-	$core->start($_GET);
-
-	$saida = ob_get_contents();
-ob_end_clean();
 
 $nomeGuerra = $usuario->getNomeGuerra();
 $patente = $usuario->getPatente();
@@ -43,7 +45,8 @@ $om = $usuario->getOM();
 $saram = $usuario->getSaram();
 $cpf = $usuario->getCPF();
 
-if(isset($_GET['url'])){    if($_GET['url'] == 'perfil'){
+if(isset($_GET['url'])){    
+    if($_GET['url'] == 'perfil'){
         $saidaPronto = str_replace(array(
             '{{cpf}}', '{{nome_completo}}',  '{{nome_guerra}}', '{{om}}', '{{saram}}'
         ),
@@ -76,10 +79,8 @@ if(isset($_GET['url'])){    if($_GET['url'] == 'perfil'){
         $saida, $patente, $nomeGuerra
     ), $template);
     
-}
+} ;
 
-
-;
 echo $tplPronto;
 
 
