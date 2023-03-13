@@ -29,6 +29,10 @@
                     $conteudo = file_get_contents('app/View/listarConteudistas.html');
                     echo $conteudo;
                     return true;
+                } elseif($acao == 'tabela'){
+                    $conteudo = file_get_contents('app/View/tabelaTeste.html');
+                    echo $conteudo;
+                    return true;
                 }
 
                 throw new Exception('erro');

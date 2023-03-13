@@ -16,13 +16,13 @@ if($nome_om != null){
   VALUES ('$nome_om')";
   $conn->exec($sql);
   //echo "New record created successfully";
-  echo "<script> alert('OM Cadastrada.'); window.location.href='../../view/conteudistas/cadastrar.php';</script>";
+  echo "<script> alert('OM Cadastrada.'); window.location.href='../../../conteudistas/cadastrar'</script>";
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();
-  echo "<script> alert('Tente novamente!'); window.location.href='../../view/conteudistas/cadastrar.php';</script>";
+  echo "<script> alert('Tente novamente!'); window.location.href='../../../conteudistas/cadastrar.php';</script>";
 }
 }else{
-  echo "<script> alert('Insira um nome!'); window.location.href='../../view/conteudistas/cadastrar.php';</script>";
+  echo "<script> alert('Insira um nome!'); window.location.href='../../../conteudistas/cadastrar.php';</script>";
 }
 
 $conn = null;

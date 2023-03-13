@@ -1,7 +1,7 @@
 function dropOm() {
     $.ajax({
         type: 'GET',
-        url: '../../model/webservice.php',
+        url: '../app/Model/webservice.php',
         data: {
             acao: 'dropOm' //Envia esse dado como GET para o webservice 
         },

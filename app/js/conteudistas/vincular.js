@@ -1,7 +1,7 @@
 function dropConteudista() {
     $.ajax({
       type: 'GET',
-      url: '../../model/webservice.php',
+      url: '../app/Model/webservice.php',
       data: {
         acao: 'dropConteudista' //Envia esse dado como GET para o webservice 
       },
@@ -18,7 +18,7 @@ function dropConteudista() {
   function dropCursos() {
     $.ajax({
       type: 'GET',
-      url: '../../model/webservice.php',
+      url: '../app/Model/webservice.php',
       data: {
         acao: 'dropCursos' //Envia esse dado como GET para o webservice 
       },

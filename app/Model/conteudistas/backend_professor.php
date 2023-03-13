@@ -16,10 +16,10 @@ try {
   $sql = "INSERT INTO conteudista (cpf, nome_completo, nome_guerra, id_om)
   VALUES ($cpf, '$nome_completo', '$nome_guerra', $id_om)";
   $conn->exec($sql);
-  echo "<script> alert('Conteudista Cadastrado.'); window.location.href='../../view/conteudistas/cadastrar.php';</script>";
+  echo "<script> alert('Conteudista Cadastrado.'); window.location.href='../../../conteudistas/cadastrar';</script>";
 } catch(PDOException $e) {
   //echo $sql . "<br>" . $e->getMessage();
-  echo "<script> alert('Tente novamente!'); window.location.href='../../view/conteudistas/cadastrar.php';</script>";
+  echo "<script> alert('Tente novamente!'); window.location.href='../../../conteudistas/cadastrar';</script>";
 }
 
 $conn = null;

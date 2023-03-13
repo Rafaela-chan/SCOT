@@ -11456,7 +11456,7 @@
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
-				 *            "next": "Next page"
+				 *            "Próxima": "Next page"
 				 *          }
 				 *        }
 				 *      } );
@@ -11781,7 +11781,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Pesquisa:",
 	
 	
 			/**

@@ -8,7 +8,7 @@
         </div>
         <div class="card-body mt-5">
             <div class="chart-area">
-                <form method="post" action="../model/backend_professor.php">
+                <form method="post" action="../app/Model/conteudistas/backend_professor.php">
                     <div class="row">
                         <div class="col">
                             <p>CPF</p>
@@ -50,6 +50,31 @@
                     </div>
                 </form>
             </div>
+
+            <!-- Corpo do Modal -->
+            <div class="col">
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form method="post" action="../app/Model/conteudistas/backend_om.php">
+                                    <p>Insira o nome da OM</p>
+                                    <input type="text" class="form-control" placeholder="OM" name="nome_om">
+                                    <input type="submit" value="Cadastrar" style="margin-top: 30px;"
+                                        class="btn btn-success form-control">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+</div>
 </div>

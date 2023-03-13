@@ -16,12 +16,12 @@ if($nome_curso != null){  try {
     VALUES ('$nome_curso', $data)";
     $conn->exec($sql);
     //echo "New record created successfully";
-    echo "<script> alert('Curso Cadastrado.'); window.location.href='../../view/conteudistas/curso.php';</script>";
+    echo "<script> alert('Curso Cadastrado.'); window.location.href='../../../conteudistas/curso';</script>";
   } catch(PDOException $e) {
     //echo $sql . "<br>" . $e->getMessage();
-    echo "<script> alert('Tente novamente!'); window.location.href='../../view/conteudistas/curso.php';</script>";
+    echo "<script> alert('Tente novamente!'); window.location.href='../../../conteudistas/curso';</script>";
   }}else{
-    echo "<script> alert('Insira o nome do curso!'); window.location.href='../../view/conteudistas/curso.php;</script>";
+    echo "<script> alert('Insira o nome do curso!'); window.location.href='../../../conteudistas/curso;</script>";
   }
   
 
