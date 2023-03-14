@@ -11,6 +11,7 @@ class Usuario{
     private $nomeGuerra;
     private $patente;
     private $om;
+    private $acess;
 
     public function getIdUsuario(){
         return $this->idUsuario;
@@ -52,6 +53,10 @@ class Usuario{
         return $this->om;
     }
     
+    public function getAcess(){
+        return $this->acess;
+    }
+
     public function setIdUsuario($param){
         $this->idUsuario = $param;
     }
@@ -91,6 +96,9 @@ class Usuario{
     public function setOM($param){
         $this->om = $param;
     }
+    public function setAcess($param){
+		$this->acess = $param;
+	}
     public function logar($user,$pass){
         try{
             $url_path = 'http://apps.gapls.intraer/scati/resource/v1/ldap';
@@ -107,18 +115,28 @@ class Usuario{
                                     ));
 
             $stream = stream_context_create($options);
-            $result = json_decode((file_get_contents($url_path, false, $stream)), true);
-            $_SESSION['mensagem'] = " ";                        
+            $result = json_decode((file_get_contents($url_path, false, $stream)), true);                       
             //var_dump($result);
             if($result['valid']){
-                $this->setCPF(($result['cpf']));
-                $this->setSaram(($result['saram']));
-                $this->setNomeCompleto(($result['nomeCompleto']));
-                $this->setNomeGuerra(($result['nomeGuerra']));
-                $this->setPatente(($result['patente']));
-                $this->setOM(($result['om']));
-                return true;
-
+                $dados = file_get_contents('users.json');
+                $dadosJson = json_decode($dados);
+                foreach($dadosJson->users as $usuario){
+                    if(($usuario->cpf) == $user){
+                        $this->setIdAcesso($usuario->idAcess);
+                        $this->setAcess($usuario->acess);
+                        $this->setCPF(($result['cpf']));
+                        $this->setSaram(($result['saram']));
+                        $this->setNomeCompleto(($result['nomeCompleto']));
+                        $this->setNomeGuerra(($result['nomeGuerra']));
+                        $this->setPatente(($result['patente']));
+                        $this->setOM(($result['om']));
+                        return true;
+                    }
+                }
+                if($this->getIdAcesso() == NULL){
+                    echo "<script> alert('você é chatu'); </script>";
+                }
+                
             }else{
                 $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'>Usuário ou senha incorretos!</div>";                
                 header("Location: ../../../../SCOT/deslogar");
@@ -150,6 +168,9 @@ class Usuario{
     public function atualizar($cpf, $nomeCompleto, $nomeGuerra, $posto, $saram){
         
     }
+
+
+
 }
 
 session_start();
