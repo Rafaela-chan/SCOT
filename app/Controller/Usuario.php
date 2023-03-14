@@ -138,8 +138,8 @@ class Usuario{
                 }
                 
             }else{
-                $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'>Usuário ou senha incorretos!</div>";                
-                header("Location: ../../../../SCOT/deslogar");
+                $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha incorretos!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";                
+                header("Location: ../../../../SCOT/login.php");
             }
             
         }catch(Exception $e) {
@@ -149,7 +149,9 @@ class Usuario{
 
     public function deslogar(){
         session_destroy();
-        echo "<script> alert('Você deslogou.'); window.location.href='../../../../SCOT/deslogar';</script>";
+        session_start();
+        $_SESSION['mensagem'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">Deslogado com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+        header("Location: ../../../../SCOT/login.php");
     }
 
     public function verificarLogin(){
@@ -157,11 +159,11 @@ class Usuario{
             $loginTeste = $_SESSION['logado'];
             return true;
             if($loginTeste == null || $loginTeste == false){
-                echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='SCOT/deslogar';</script>";
+                $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 return false;
             }
         }else{
-            echo "<script> alert('É necessário logar para acessar o sistema.'); window.location.href='../SCOT/deslogar';</script>";
+           header("Location: ../../../../SCOT/login.php");
         }
     }
 

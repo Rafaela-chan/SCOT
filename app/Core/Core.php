@@ -10,12 +10,17 @@
 			}
 			
 			if(isset($url)){
-				$controller = ucfirst($url[0].'Controller');
-				//var_dump($controller);
-				if(isset($url[1])){
-					$acao = $url[1];
+				if($url[0]='usuario'){
+					$controller = ucfirst($url[0]);
+					$funcao=$url[1];
 				}else{
-					$acao = null;
+					$controller = ucfirst($url[0].'Controller');
+					//var_dump($controller);
+					if(isset($url[1])){
+						$acao = $url[1];
+					}else{
+						$acao = null;
+					}
 				}
 			} else {
 				$controller = 'HomeController';
