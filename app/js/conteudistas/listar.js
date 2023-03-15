@@ -16,20 +16,12 @@ function listarConteudistas() {
     });
 }
 
-async function execute(){
-    await listarConteudistas();
-    $('#dataTable').DataTable( {
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
-        }
-    })
-}
-
 $(document).ready(function () {
-    execute();
+    listarConteudistas();
+
     /*$('#dataTable').DataTable( {
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
         }
-    } );*/
+    } )*/
 });

@@ -135,7 +135,7 @@ class Usuario{
                     }
                 }
                 if($this->getIdAcesso() == NULL){
-                    $_SESSION['mensagem'] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Solicite acesso ao IEAD!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";                
+                    $_SESSION['mensagem'] = 2;                
                     header("Location: ../../../../SCOT/login.php");
                 }
                 
@@ -157,9 +157,12 @@ class Usuario{
         if(isset($_SESSION['logado'])){
             return true;
         }elseif($_SESSION['mensagem'] == 1){
-            $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha incorretos!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha <strong>incorretos!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
             header("Location: ../../../../SCOT/login.php");
             return false;
+        }elseif($_SESSION['mensagem'] == 2){
+            $_SESSION['mensagem'] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Solicite acesso ao <strong>IEAD!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            header("Location: ../../../../SCOT/login.php");
         }else{
             $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
             header("Location: ../../../../SCOT/login.php");

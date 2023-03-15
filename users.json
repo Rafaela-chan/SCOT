@@ -1,12 +1,6 @@
 {
     "users":[  
         {
-            "name": "Leandro Lucas",
-            "cpf": "15570391606",
-            "acess": "admin",
-            "idAcess": "1"
-        },
-        {
             "name": "de Paula",
             "cpf": "44912100803",
             "acess": "admin",
