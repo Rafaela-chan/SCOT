@@ -130,15 +130,17 @@ class Usuario{
                         $this->setNomeGuerra(($result['nomeGuerra']));
                         $this->setPatente(($result['patente']));
                         $this->setOM(($result['om']));
+                        $_SESSION['logado'] = true;
                         return true;
                     }
                 }
                 if($this->getIdAcesso() == NULL){
-                    echo "<script> alert('você é chatu'); </script>";
+                    $_SESSION['mensagem'] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Solicite acesso ao IEAD!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";                
+                    header("Location: ../../../../SCOT/login.php");
                 }
                 
             }else{
-                $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha incorretos!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";                
+                $_SESSION['mensagem'] = 1;                
                 header("Location: ../../../../SCOT/login.php");
             }
             
@@ -148,31 +150,25 @@ class Usuario{
     }
 
     public function deslogar(){
-        session_destroy();
-        session_start();
-        $_SESSION['mensagem'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">Deslogado com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-        header("Location: ../../../../SCOT/login.php");
+        header("Location: ../../../../SCOT/login.php?deslogar");
     }
 
     public function verificarLogin(){
         if(isset($_SESSION['logado'])){
-            $loginTeste = $_SESSION['logado'];
             return true;
-            if($loginTeste == null || $loginTeste == false){
-                $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-                return false;
-            }
+        }elseif($_SESSION['mensagem'] == 1){
+            $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha incorretos!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            header("Location: ../../../../SCOT/login.php");
+            return false;
         }else{
-           header("Location: ../../../../SCOT/login.php");
+            $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+            header("Location: ../../../../SCOT/login.php");
+            return false;
+            }
+            //$_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+            //header("Location: ../../../../SCOT/login.php");
         }
-    }
-
-    public function atualizar($cpf, $nomeCompleto, $nomeGuerra, $posto, $saram){
-        
-    }
-
-
-
+   
 }
 
 session_start();

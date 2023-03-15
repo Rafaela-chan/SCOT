@@ -10,9 +10,11 @@
 			}
 			
 			if(isset($url)){
-				if($url[0]='usuario'){
+				if($url[0]=='usuario'){
 					$controller = ucfirst($url[0]);
+					if(isset($url[1])){
 					$funcao=$url[1];
+					}
 				}else{
 					$controller = ucfirst($url[0].'Controller');
 					//var_dump($controller);
@@ -36,4 +38,3 @@
 			call_user_func_array(array(new $controller, $funcao), array($acao));
 		}
 	}
-?>

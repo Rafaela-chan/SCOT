@@ -31,7 +31,6 @@ if(isset($_POST['submit'])){
 if(isset($_SESSION['logar'])){
     $user = $_SESSION['user'];
     $pass = $_SESSION['pass'];
-    $_SESSION['logado'] = true;
     $usuario->logar($user, $pass);
 }
 
