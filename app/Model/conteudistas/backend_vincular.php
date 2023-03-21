@@ -6,8 +6,8 @@ echo $id_curso;
 echo $id_conteudista;
 
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "	iead";
+$password = "I3aD_2021*";
 $dbname = "conteudistas";
 
 if($id_conteudista != null && $id_curso != null){  try {

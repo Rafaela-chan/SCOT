@@ -6,7 +6,7 @@ $id_om = $_POST['id_om'];
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "I3aD_2021*";
 $dbname = "conteudistas";
 
 try {

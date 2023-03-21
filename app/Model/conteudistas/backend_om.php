@@ -3,7 +3,7 @@ $nome_om = $_POST['nome_om'];
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "I3aD_2021*";
 $dbname = "conteudistas";
 
 if($nome_om != null){
