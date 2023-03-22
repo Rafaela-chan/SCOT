@@ -2,7 +2,7 @@
 
 define('DB_NAME', "conteudistas");
 define('DB_SERVER', "localhost");
-define('DB_USER', "iead");
+define('DB_USER', "root");
 define('DB_PASSWORD', "I3aD_2021*");
 
 
@@ -25,6 +25,18 @@ while($ln = $sql->fetchObject()){
 }
 $sql = '';	
 }
+if($_GET['acao'] == 'dropTutor'){
+	$sql = $pdo->prepare("SELECT * FROM tutor ORDER BY nome_completo");
+	$sql->execute();
+	$n = 0;
+	$retorno['qtd'] = $sql->rowCount();
+	while($ln = $sql->fetchObject()){
+		$retorno['id_tutor'][$n] = $ln->id_tutor;
+		$retorno['nome_completo'][$n]   = $ln->nome_completo;
+		$n++;
+	}
+	$sql = '';	
+	}
 
 if($_GET['acao'] == 'dropCursos'){
 $sql = $pdo->prepare("SELECT * FROM curso ORDER BY nome_curso");

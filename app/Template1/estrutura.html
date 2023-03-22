@@ -53,7 +53,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Sistemas
+                Usuários
             </div>
 
             <!-- Nav Item - Conteudistas -->
@@ -65,7 +65,7 @@
                 <div id="collapseConteudista" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="../../../../../SCOT/conteudistas/cadastrar">Cadastrar conteudista</a>
+                        <a class="collapse-item" href="../../../../../SCOT/conteudistas/cadastrar">Cadastrar</a>
                         <a class="collapse-item" href="../../../../../SCOT/conteudistas/curso">Cadastrar curso</a>
                         <a class="collapse-item" href="../../../../../SCOT/conteudistas/vincular">Vincular</a>
                         <a class="collapse-item" href="../../../../../SCOT/conteudistas/listar">Listar</a>
@@ -81,11 +81,34 @@
                 <div id="collapseTutores" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="">Cadastrar tutor</a>
-                        <a class="collapse-item" href="">Listar</a>
+                        <a class="collapse-item" href="../../../../../SCOT/tutores/cadastrar">Cadastrar</a>
+                        <a class="collapse-item" href="../../../../../SCOT/tutores/curso">Cadastrar curso</a>
+                        <a class="collapse-item" href="../../../../../SCOT/tutores/vincular">Vincular</a>
+                        <a class="collapse-item" href="../../../../../SCOT/tutores/listar">Listar</a>
                     </div>
                 </div>
             </li>
+
+            <div class="sidebar-heading">
+                Cursos
+            </div>
+            <!-- Nav Item - Disciplinas -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConteudista" aria-expanded="true" aria-controls="collapseConteudista">
+                    <i class="fas fa-chalkboard fa-sm fa-fw mr-2"></i>
+                    <span>Disciplinas</span>
+                </a>
+                <div id="collapseConteudista" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="../../../../../SCOT/conteudistas/cadastrar">Cadastrar</a>
+                        <a class="collapse-item" href="../../../../../SCOT/conteudistas/curso">Cadastrar curso</a>
+                        <a class="collapse-item" href="../../../../../SCOT/conteudistas/vincular">Vincular</a>
+                        <a class="collapse-item" href="../../../../../SCOT/conteudistas/listar">Listar</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Tables -->
             <!--
             <li class="nav-item">
@@ -111,7 +134,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
-
+                    <h5 style="color: #ffff; text-align: left; padding-top: 7px;"><strong>SISTEMA DE CONTEUDISTAS E TUTORES</strong> </h5>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -120,7 +143,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto ">
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -225,11 +247,10 @@
     <script src="../../../../../SCOT/app/Template1/js/demo/chart-pie-demo.js"></script>
 
     <!-- Main Script -->
-    <script src="../../.../../../../SCOT/app/js/conteudistas/vincular.js"></script>
-    <script src="../../.../../../../SCOT/app/js/conteudistas/dados_conteudistas.js"></script>
     <script src="../../.../../../../SCOT/app/Template1/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../../.../../../../SCOT/app/Template1/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="../../.../../../../SCOT/app/js/conteudistas/listar.js"></script>
+    <script src="../../.../../../../SCOT/app/js/script.js"></script>
+
 
 
 </body>

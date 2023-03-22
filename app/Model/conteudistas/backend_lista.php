@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "I3aD_2021*";
 $dbname = "conteudistas";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);

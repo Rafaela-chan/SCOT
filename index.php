@@ -9,6 +9,7 @@ require_once 'app/Controller/ErroController.php';
 require_once 'app/Controller/ConteudistasController.php';
 require_once 'app/Controller/PerfilController.php';
 require_once 'app/Controller/DeslogarController.php';
+require_once 'app/Controller/TutoresController.php';
 
 $template = file_get_contents('app/Template1/estrutura.html');
 $usuario = new Usuario;

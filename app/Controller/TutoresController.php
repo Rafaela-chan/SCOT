@@ -1,6 +1,6 @@
 <?php
 	
-		Class ConteudistasController
+		Class TutoresController
 		{
 			public function index($acao)
 			{
@@ -13,9 +13,9 @@
 
             private function testeAcao($acao)
             {
-                $div = '<h1 class="h3 mb-2 text-gray-800">Conteudistas</h1><hr>';
+                $div = '<h1 class="h3 mb-2 text-gray-800">Tutores</h1><hr>';
                 if($acao == 'cadastrar'){
-                    $conteudo = file_get_contents('app/View/cadastrarConteudista.html');
+                    $conteudo = file_get_contents('app/View/cadastrarTutores.html');
                     $tplPronto = str_replace('{{div}}' ,$div , $conteudo);
                     echo $tplPronto;
                     return true;
@@ -25,12 +25,12 @@
                     echo $tplPronto;
                     return true;
                 } elseif($acao == 'vincular'){
-                    $conteudo = file_get_contents('app/View/vincularConteudistas.html');
+                    $conteudo = file_get_contents('app/View/vincularTutores.html');
                     $tplPronto = str_replace('{{div}}' ,$div , $conteudo);
                     echo $tplPronto;
                     return true;
                 } elseif($acao == 'listar'){
-                    $conteudo = file_get_contents('app/View/listarConteudistas.html');
+                    $conteudo = file_get_contents('app/View/listarTutores.html');
                     $tplPronto = str_replace('{{div}}' ,$div , $conteudo);
                     echo $tplPronto;
                     return true;

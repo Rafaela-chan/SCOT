@@ -3,7 +3,7 @@ $nome_curso = $_POST['nome_curso'];
 $data_inicio = $_POST['data_inicio'];
 $data=date("Ymd", strtotime($data_inicio));
 $servername = "localhost";
-$username = "iead";
+$username = "root";
 $password = "I3aD_2021*";
 $dbname = "conteudistas";
 
@@ -16,12 +16,12 @@ if($nome_curso != null){  try {
     VALUES ('$nome_curso', $data)";
     $conn->exec($sql);
     //echo "New record created successfully";
-    echo "<script> alert('Curso Cadastrado.'); window.location.href='../../../conteudistas/curso';</script>";
+    echo "<script> alert('Curso Cadastrado.'); window.location.href='../../';</script>";
   } catch(PDOException $e) {
     //echo $sql . "<br>" . $e->getMessage();
-    echo "<script> alert('Tente novamente!'); window.location.href='../../../conteudistas/curso';</script>";
+    echo "<script> alert('Tente novamente!'); window.location.href='../../';</script>";
   }}else{
-    echo "<script> alert('Insira o nome do curso!'); window.location.href='../../../conteudistas/curso;</script>";
+    echo "<script> alert('Insira o nome do curso!'); window.location.href='../../';</script>";
   }
   
 
