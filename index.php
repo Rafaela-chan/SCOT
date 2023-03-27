@@ -47,11 +47,13 @@ $cpf = $usuario->getCPF();
 
 if(isset($_GET['url'])){    
     if($_GET['url'] == 'perfil'){
+        $cpfHide = $cpf[9].$cpf[10];
+
         $saidaPronto = str_replace(array(
             '{{cpf}}', '{{nome_completo}}',  '{{nome_guerra}}', '{{om}}', '{{saram}}'
         ),
         array(
-            $cpf, $nomeCompleto, $nomeGuerra, $om, $saram
+            $cpfHide, $nomeCompleto, $nomeGuerra, $om, $saram
         ),
         $saida
         );

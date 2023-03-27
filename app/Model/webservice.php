@@ -1,6 +1,6 @@
 <?php
 
-define('DB_NAME', "conteudistas");
+define('DB_NAME', "SGCOTE");
 define('DB_SERVER', "localhost");
 define('DB_USER', "root");
 define('DB_PASSWORD', "I3aD_2021*");
@@ -24,6 +24,20 @@ while($ln = $sql->fetchObject()){
 	$n++;
 }
 $sql = '';	
+}
+if($_GET['acao'] == 'listUsers'){
+	$sql = $pdo->prepare("SELECT * FROM usuario ORDER BY id_usuario");
+	$sql->execute();
+	$n = 0;
+	$retorno['qtd'] = $sql->rowCount();
+	while($ln = $sql->fetchObject()){
+		$retorno['id_usuario'][$n] = $ln->id_usuario;
+		$retorno['cpf'][$n] = $ln->cpf;
+		$retorno['id_acesso'][$n] = $ln->id_acesso;
+		$retorno['nome_usuario'][$n] = $ln->nome_usuario;
+		$n++;
+	}
+		$sql = '';	
 }
 if($_GET['acao'] == 'dropTutor'){
 	$sql = $pdo->prepare("SELECT * FROM tutor ORDER BY nome_completo");
@@ -90,6 +104,8 @@ if($_GET['acao'] == 'listaCurso'){
 	}
 		$sql = '';	
 }
+
+
 
 
 die(json_encode($retorno));

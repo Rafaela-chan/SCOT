@@ -4,7 +4,7 @@
 	{
 		public function index($acao)
 		{
-			header('Location: /SCOT/login.php');
+			header('Location: /SGCOTE/login.php');
 		}
 	}
 ?>

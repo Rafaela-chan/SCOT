@@ -118,9 +118,10 @@ class Usuario{
             $result = json_decode((file_get_contents($url_path, false, $stream)), true);                       
             //var_dump($result);
             if($result['valid']){
-                $dados = file_get_contents('users.json');
-                $dadosJson = json_decode($dados);
-                foreach($dadosJson->users as $usuario){
+
+                
+                $dados = file_get_contents('http://localhost/SGCOTE/app/Model/webservice.php?acao=listUsers');
+                foreach($dados->users as $usuario){
                     if(($usuario->cpf) == $user){
                         $this->setIdAcesso($usuario->idAcess);
                         $this->setAcess($usuario->acess);
@@ -136,12 +137,12 @@ class Usuario{
                 }
                 if($this->getIdAcesso() == NULL){
                     $_SESSION['mensagem'] = 2;                
-                    header("Location: ../../../../SCOT/login.php");
+                    header("Location: ../../../../SGCOTE/login.php");
                 }
                 
             }else{
                 $_SESSION['mensagem'] = 1;                
-                header("Location: ../../../../SCOT/login.php");
+                header("Location: ../../../../SGCOTE/login.php");
             }
             
         }catch(Exception $e) {
@@ -150,7 +151,7 @@ class Usuario{
     }
 
     public function deslogar(){
-        header("Location: ../../../../SCOT/login.php?deslogar");
+        header("Location: ../../../../SGCOTE/login.php?deslogar");
     }
 
     public function verificarLogin(){
@@ -158,18 +159,18 @@ class Usuario{
             return true;
         }elseif($_SESSION['mensagem'] == 1){
             $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha <strong>incorretos!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-            header("Location: ../../../../SCOT/login.php");
+            header("Location: ../../../../SGCOTE/login.php");
             return false;
         }elseif($_SESSION['mensagem'] == 2){
             $_SESSION['mensagem'] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Solicite acesso ao <strong>IEAD!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-            header("Location: ../../../../SCOT/login.php");
+            header("Location: ../../../../SGCOTE/login.php");
         }else{
             $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-            header("Location: ../../../../SCOT/login.php");
+            header("Location: ../../../../SGCOTE/login.php");
             return false;
             }
             //$_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-            //header("Location: ../../../../SCOT/login.php");
+            //header("Location: ../../../../SGCOTE/login.php");
         }
    
 }

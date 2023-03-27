@@ -12,42 +12,47 @@
                     <div class="row">
                         <div class="col">
                             <p>Posto</p>
-                            <input type="text" class="form-control" value = "{{patente}}" placeholder="patente"
+                            <input type="text" class="form-control" value="{{patente}}" placeholder="patente"
                                 name="patente" disabled>
                         </div>
                         <div class="col">
                             <p>Nome Completo</p>
-                            <input type="text" class="form-control" placeholder="Nome Completo" value ="{{nome_completo}}" name="nome_completo" disabled>
+                            <input type="text" class="form-control" placeholder="Nome Completo"
+                                value="{{nome_completo}}" name="nome_completo" disabled>
                         </div>
                         <div class="col">
                             <p>Nome de Guerra</p>
-                            <input type="text" class="form-control" value = "{{nome_guerra}}" placeholder="Nome de Guerra (Em caso de militares)"
-                                name="nome_guerra" disabled>
+                            <input type="text" class="form-control" value="{{nome_guerra}}"
+                                placeholder="Nome de Guerra (Em caso de militares)" name="nome_guerra" disabled>
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
                             <p>CPF</p>
-                            <input type="text" class="form-control" id="email" value="{{cpf}}" name="cpf" disabled>
+                            <input type="cpf" class="form-control" id="cpf" value="***.***.***-{{cpf}}" name="cpf"
+                                disabled>
                         </div>
                         <div class="col">
                             <p>Saram</p>
-                            <input type="text" class="form-control" value = "{{saram}}" placeholder="saram"
-                                name="saram" disabled>
+                            <input type="text" class="form-control" value="{{saram}}" placeholder="saram" name="saram"
+                                disabled>
                         </div>
                         <div class="col">
                             <p>OM</p>
-                            <input type="text" class="form-control" value = "{{om}}" placeholder="om"
-                                name="om" disabled>
+                            <input type="text" class="form-control" value="{{om}}" placeholder="om" name="om" disabled>
                         </div>
-                        
+
 
                     </div>
                     <!-- Estruta dos botões -->
-                    <div class="form-row">
-                        <div class="col">
-                            <a href="../../SCOT/" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao menu</a>
+                    <br>
+                    <div class="d-flex justify-content-center">
+                        <div class="form-row col-4">
+                            <div class="col">
+                                <a href="../../SGCOTE/" style="margin-top: 30px;"
+                                    class="btn btn-info form-control">Voltar ao menu</a>
+                            </div>
                         </div>
                     </div>
                 </form>

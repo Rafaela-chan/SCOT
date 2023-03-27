@@ -7,7 +7,7 @@
                 try{
                     $this->testeAcao($acao);
                 } catch(Exception $e) {
-                    header('Location: /SCOT/erro/');
+                    header('Location: /SGCOTE/erro/');
                 }   
 			}
 

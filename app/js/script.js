@@ -1,7 +1,7 @@
 function dropOm() {
     $.ajax({
         type: 'GET',
-        url: '../app/Model/webservice.php',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
         data: {
             acao: 'dropOm' //Envia esse dado como GET para o webservice 
         },
@@ -18,7 +18,7 @@ function dropOm() {
 function dropConteudista() {
     $.ajax({
         type: 'GET',
-        url: '../app/Model/webservice.php',
+        url: '../../../SGCOTE/app/Model/webservice.php',
         data: {
             acao: 'dropConteudista' //Envia esse dado como GET para o webservice 
         },
@@ -35,7 +35,7 @@ function dropConteudista() {
 function dropTutor() {
     $.ajax({
         type: 'GET',
-        url: '../app/Model/webservice.php',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
         data: {
             acao: 'dropTutor' //Envia esse dado como GET para o webservice 
         },
@@ -52,7 +52,7 @@ function dropTutor() {
 function dropCursos() {
     $.ajax({
         type: 'GET',
-        url: '../app/Model/webservice.php',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
         data: {
             acao: 'dropCursos' //Envia esse dado como GET para o webservice 
         },
@@ -74,8 +74,22 @@ function tableConteudista() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "../../SCOT/app/Model/conteudistas/backend_lista.php",
+            "url": "../../SGCOTE/app/Model/conteudistas/backend_lista.php",
             "type": "POST"
+        }
+    });
+}
+
+function listUsers() {
+    $.ajax({
+        type: 'GET',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
+        data: {
+            acao: 'listUsers' //Envia esse dado como GET para o webservice 
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
         }
     });
 }
@@ -86,4 +100,5 @@ $(document).ready(function () {
     dropConteudista();
     dropTutor();
     tableConteudista();
+    listUsers();
 });
