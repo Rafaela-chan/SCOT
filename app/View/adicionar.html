@@ -1,0 +1,68 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Usuário</h1>
+    <hr>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cadastrar Usuário</h6>
+        </div>
+        <div class="card-body mt-5">
+            <div class="chart-area">
+                <form method="post" action="../SGCOTE/app/Model/backend_adicionar.php">
+                    <div class="row">
+                        <div class="col">
+                            <p>CPF</p>
+                            <input type="text" class="form-control" id="email" placeholder="Digite o CPF" name="cpf">
+                        </div>
+                        <div class="col">
+                            <p>Nome de Guerra</p>
+                            <input type="text" class="form-control" placeholder="Nome de Guerra"
+                                name="nome_usuario">
+                        </div>
+                        <div class="col">
+                            <p>Acesso</p>
+                            <select class="form-control" name="id_acesso">
+                                <option value="0">VAZIO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Estruta dos botões -->
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="submit" value="Cadastrar Conteudista" style="margin-top: 30px;"
+                                class="btn btn-success form-control">
+                        </div>
+                        <div class="col">
+                            <a href="../../SGCOTE" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao menu</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Corpo do Modal -->
+            <div class="col">
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form method="post" action="../app/Model/backend_om.php">
+                                    <p>Insira o nome da OM</p>
+                                    <input type="text" class="form-control" placeholder="OM" name="nome_om">
+                                    <input type="submit" value="Cadastrar" style="margin-top: 30px;"
+                                        class="btn btn-success form-control">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>

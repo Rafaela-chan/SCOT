@@ -10,6 +10,7 @@ require_once 'app/Controller/ConteudistasController.php';
 require_once 'app/Controller/PerfilController.php';
 require_once 'app/Controller/DeslogarController.php';
 require_once 'app/Controller/TutoresController.php';
+require_once 'app/Controller/AdicionarController.php';
 
 $template = file_get_contents('app/Template1/estrutura.html');
 $usuario = new Usuario;
@@ -44,6 +45,7 @@ $nomeCompleto = $usuario->getNomeCompleto();
 $om = $usuario->getOM();
 $saram = $usuario->getSaram();
 $cpf = $usuario->getCPF();
+$idAcesso = $usuario->getIdAcesso();
 
 if(isset($_GET['url'])){    
     if($_GET['url'] == 'perfil'){
@@ -82,7 +84,14 @@ if(isset($_GET['url'])){
     ), $template);
     
 } ;
-
 echo $tplPronto;
 
 
+if($idAcesso == 3){
+    ?>
+    <script>
+    var element = document.getElementById("admin");
+    element.style.display = "none";
+    </script>
+    <?php
+}

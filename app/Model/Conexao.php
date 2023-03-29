@@ -1,7 +1,7 @@
 <?php 
 session_start();
 abstract class Conexao{
-	private $conn;
+	protected $conn;
 //FUNÇÃO RESPONSÁVEL POR CONECTAR COM O BD
 	public function __construct(){
 		require_once 'Config.php';

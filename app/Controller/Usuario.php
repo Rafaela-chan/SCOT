@@ -1,6 +1,7 @@
 <?php
-
-class Usuario{
+require_once __DIR__ . '/../model/conexao.php';
+class Usuario extends Conexao
+{
     private $idUsuario;
     private $nomeCompleto;
     private $posto;
@@ -13,118 +14,140 @@ class Usuario{
     private $om;
     private $acess;
 
-    public function getIdUsuario(){
+    public function getIdUsuario()
+    {
         return $this->idUsuario;
     }
 
-    public function getNomeCompleto(){
+    public function getNomeCompleto()
+    {
         return $this->nomeCompleto;
     }
 
-    public function getPosto(){
+    public function getPosto()
+    {
         return $this->posto;
     }
 
-    public function getIdAcesso(){
+    public function getIdAcesso()
+    {
         return $this->idAcesso;
     }
 
-    public function getIdTipo(){
+    public function getIdTipo()
+    {
         return $this->idTipo;
     }
 
-    public function getCPF(){
+    public function getCPF()
+    {
         return $this->cpf;
     }
 
-    public function getSaram(){
+    public function getSaram()
+    {
         return $this->saram;
     }
 
-    public function getNomeGuerra(){
+    public function getNomeGuerra()
+    {
         return $this->nomeGuerra;
     }
 
-    public function getPatente(){
+    public function getPatente()
+    {
         return $this->patente;
     }
 
-    public function getOM(){
+    public function getOM()
+    {
         return $this->om;
     }
-    
-    public function getAcess(){
+
+    public function getAcess()
+    {
         return $this->acess;
     }
 
-    public function setIdUsuario($param){
+    public function setIdUsuario($param)
+    {
         $this->idUsuario = $param;
     }
 
-    public function setNomeCompleto($param){
+    public function setNomeCompleto($param)
+    {
         $this->nomeCompleto = $param;
     }
 
-    public function setPosto($param){
+    public function setPosto($param)
+    {
         $this->posto = $param;
     }
 
-    public function setIdAcesso($param){
+    public function setIdAcesso($param)
+    {
         $this->idAcesso = $param;
     }
 
-    public function setIdTipo($param){
+    public function setIdTipo($param)
+    {
         $this->idTipo = $param;
     }
 
-    public function setCPF($param){
+    public function setCPF($param)
+    {
         $this->cpf = $param;
     }
 
-    public function setSaram($param){
+    public function setSaram($param)
+    {
         $this->saram = $param;
     }
-    
-    public function setNomeGuerra($param){
+
+    public function setNomeGuerra($param)
+    {
         $this->nomeGuerra = $param;
     }
 
-    public function setPatente($param){
+    public function setPatente($param)
+    {
         $this->patente = $param;
     }
 
-    public function setOM($param){
+    public function setOM($param)
+    {
         $this->om = $param;
     }
-    public function setAcess($param){
-		$this->acess = $param;
-	}
-    public function logar($user,$pass){
-        try{
+    public function setAcess($param)
+    {
+        $this->acess = $param;
+    }
+    public function logar($user, $pass)
+    {
+        try {
             $url_path = 'http://apps.gapls.intraer/scati/resource/v1/ldap';
             $data = http_build_query(array(
-                                        'login' => $user, 
-                                        'senha' => $pass
+                'login' => $user,
+                'senha' => $pass
             ));
-                                    
+
             $options = array('http' => array(
-                                        'method' => "POST",
-                                        'header' =>
-                                            "Content-Type: application/x-www-form-urlencoded",
-                                        'content' => $data
-                                    ));
+                'method' => "POST",
+                'header' =>
+                "Content-Type: application/x-www-form-urlencoded",
+                'content' => $data
+            ));
 
             $stream = stream_context_create($options);
-            $result = json_decode((file_get_contents($url_path, false, $stream)), true);                       
-            //var_dump($result);
-            if($result['valid']){
+            $result = json_decode((file_get_contents($url_path, false, $stream)), true);
 
-                
-                $dados = file_get_contents('http://localhost/SGCOTE/app/Model/webservice.php?acao=listUsers');
-                foreach($dados->users as $usuario){
-                    if(($usuario->cpf) == $user){
-                        $this->setIdAcesso($usuario->idAcess);
-                        $this->setAcess($usuario->acess);
+            if ($result['valid']) {
+                $sql = $this->conn->prepare("SELECT * FROM usuario WHERE cpf = '$user'");
+                $sql->execute();
+                $valores = $sql->fetchAll();
+                if ($valores != NULL) {
+                    foreach ($valores as $k => $v) {
+                        $this->setIdAcesso($v['id_acesso']);
                         $this->setCPF(($result['cpf']));
                         $this->setSaram(($result['saram']));
                         $this->setNomeCompleto(($result['nomeCompleto']));
@@ -134,47 +157,46 @@ class Usuario{
                         $_SESSION['logado'] = true;
                         return true;
                     }
+                } else {
+                    $_SESSION['mensagem'] = 2;
+                    header("Location: ../../../../SGCOTE/deslogar");
                 }
-                if($this->getIdAcesso() == NULL){
-                    $_SESSION['mensagem'] = 2;                
-                    header("Location: ../../../../SGCOTE/login.php");
-                }
-                
-            }else{
-                $_SESSION['mensagem'] = 1;                
-                header("Location: ../../../../SGCOTE/login.php");
             }
-            
-        }catch(Exception $e) {
+        } catch (Exception $e) {
             echo "Erro: " . $e->getMessage();
         }
     }
 
-    public function deslogar(){
+    public function acess()
+    {
+        if (($this->getIdAcesso()) == 1) {
+            echo '<script type="text/javascript">changeStyle();</script>';
+        }
+    }
+
+
+    public function deslogar()
+    {
         header("Location: ../../../../SGCOTE/login.php?deslogar");
     }
 
-    public function verificarLogin(){
-        if(isset($_SESSION['logado'])){
+    public function verificarLogin()
+    {
+        if (isset($_SESSION['logado'])) {
             return true;
-        }elseif($_SESSION['mensagem'] == 1){
+        } elseif ($_SESSION['mensagem'] == 1) {
             $_SESSION['mensagem'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha <strong>incorretos!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
             header("Location: ../../../../SGCOTE/login.php");
             return false;
-        }elseif($_SESSION['mensagem'] == 2){
+        } elseif ($_SESSION['mensagem'] == 2) {
             $_SESSION['mensagem'] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Solicite acesso ao <strong>IEAD!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
             header("Location: ../../../../SGCOTE/login.php");
-        }else{
+        } else {
             $_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
             header("Location: ../../../../SGCOTE/login.php");
             return false;
-            }
-            //$_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-            //header("Location: ../../../../SGCOTE/login.php");
         }
-   
+        //$_SESSION['mensagem'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">É necessário logar para acessar o sistema!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+        //header("Location: ../../../../SGCOTE/login.php");
+    }
 }
-
-session_start();
-
-?>

@@ -25,20 +25,7 @@ while($ln = $sql->fetchObject()){
 }
 $sql = '';	
 }
-if($_GET['acao'] == 'listUsers'){
-	$sql = $pdo->prepare("SELECT * FROM usuario ORDER BY id_usuario");
-	$sql->execute();
-	$n = 0;
-	$retorno['qtd'] = $sql->rowCount();
-	while($ln = $sql->fetchObject()){
-		$retorno['id_usuario'][$n] = $ln->id_usuario;
-		$retorno['cpf'][$n] = $ln->cpf;
-		$retorno['id_acesso'][$n] = $ln->id_acesso;
-		$retorno['nome_usuario'][$n] = $ln->nome_usuario;
-		$n++;
-	}
-		$sql = '';	
-}
+
 if($_GET['acao'] == 'dropTutor'){
 	$sql = $pdo->prepare("SELECT * FROM tutor ORDER BY nome_completo");
 	$sql->execute();
@@ -75,6 +62,19 @@ while($ln = $sql->fetchObject()){
 	$n++;
 }
 $sql = '';	
+}
+
+if($_GET['acao'] == 'dropAcesso'){
+	$sql = $pdo->prepare("SELECT * FROM acesso ORDER BY id_acesso");
+	$sql->execute();
+	$n = 0;
+	$retorno['qtd'] = $sql->rowCount();
+	while($ln = $sql->fetchObject()){
+		$retorno['id_acesso'][$n] = $ln->id_acesso;
+		$retorno['nome_acesso'][$n]   = $ln->nome_acesso;
+		$n++;
+	}
+	$sql = '';	
 }
 
 if($_GET['acao'] == 'listarConteudistas'){

@@ -66,6 +66,23 @@ function dropCursos() {
     });
 }
 
+function dropAcesso() {
+    $.ajax({
+        type: 'GET',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
+        data: {
+            acao: 'dropAcesso' //Envia esse dado como GET para o webservice 
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            for (i = 0; i < data.qtd; i++) {
+                $('select[name=id_acesso').append('<option value="' + data.id_acesso[i] + '">' + data.nome_acesso[i] + '</option>');
+            }
+        }
+    });
+}
+
 function tableConteudista() {
     $('#tableConteudistas').DataTable({
         "language": {
@@ -79,19 +96,9 @@ function tableConteudista() {
         }
     });
 }
-
-function listUsers() {
-    $.ajax({
-        type: 'GET',
-        url: '../../../../SGCOTE/app/Model/webservice.php',
-        data: {
-            acao: 'listUsers' //Envia esse dado como GET para o webservice 
-        },
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
-        }
-    });
+function changeStyle(){
+    var element = document.getElementById("admin");
+    element.style.display = "none";
 }
 
 $(document).ready(function () {
@@ -99,6 +106,7 @@ $(document).ready(function () {
     dropCursos();
     dropConteudista();
     dropTutor();
+    dropAcesso();
     tableConteudista();
-    listUsers();
+    
 });
