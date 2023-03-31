@@ -7,7 +7,7 @@ function dropOm() {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             for (i = 0; i < data.qtd; i++) {
                 $('select[name=id_om').append('<option value="' + data.id_om[i] + '">' + data.nome_om[i] + '</option>');
             }
@@ -24,7 +24,7 @@ function dropConteudista() {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             for (i = 0; i < data.qtd; i++) {
                 $('select[name=id_conteudista]').append('<option value="' + data.id_conteudista[i] + '">' + data.nome_completo[i] + '</option>');
             }
@@ -41,7 +41,7 @@ function dropTutor() {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             for (i = 0; i < data.qtd; i++) {
                 $('select[name=id_tutor]').append('<option value="' + data.id_tutor[i] + '">' + data.nome_completo[i] + '</option>');
             }
@@ -58,7 +58,7 @@ function dropCursos() {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             for (i = 0; i < data.qtd; i++) {
                 $('select[name=id_curso]').append('<option value="' + data.id_curso[i] + '">' + data.nome_curso[i] + '</option>');
             }
@@ -75,7 +75,7 @@ function dropAcesso() {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             for (i = 0; i < data.qtd; i++) {
                 $('select[name=id_acesso').append('<option value="' + data.id_acesso[i] + '">' + data.nome_acesso[i] + '</option>');
             }
@@ -94,11 +94,8 @@ function tableConteudista() {
             "url": "../../SGCOTE/app/Model/conteudistas/backend_lista.php",
             "type": "POST"
         }
+        
     });
-}
-function changeStyle(){
-    var element = document.getElementById("admin");
-    element.style.display = "none";
 }
 
 $(document).ready(function () {

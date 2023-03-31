@@ -90,8 +90,12 @@ echo $tplPronto;
 if($idAcesso == 3){
     ?>
     <script>
-    var element = document.getElementById("admin");
-    element.style.display = "none";
+    var x = document.getElementsByClassName("admin");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = 'none';
+    }
+
     </script>
     <?php
 }

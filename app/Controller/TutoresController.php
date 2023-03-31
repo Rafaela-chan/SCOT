@@ -34,6 +34,11 @@
                     $tplPronto = str_replace('{{div}}' ,$div , $conteudo);
                     echo $tplPronto;
                     return true;
+                }elseif($acao == 'alterar'){
+                    $conteudo = file_get_contents('app/View/alterarTutores.html');
+                    $tplPronto = str_replace('{{div}}' ,$div , $conteudo);
+                    echo $tplPronto;
+                    return true;
                 }
 
                 throw new Exception('erro');
