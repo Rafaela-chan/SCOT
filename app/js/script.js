@@ -93,8 +93,8 @@ function tableConteudista() {
         "ajax": {
             "url": "../../SGCOTE/app/Model/conteudistas/backend_lista.php",
             "type": "POST"
-        }
-        
+        },
+
     });
 }
 
@@ -104,6 +104,5 @@ $(document).ready(function () {
     dropConteudista();
     dropTutor();
     dropAcesso();
-    tableConteudista();
     
 });

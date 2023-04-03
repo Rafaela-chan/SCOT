@@ -14,7 +14,8 @@ $requestData= $_REQUEST;
 $columns = array( 
 	0 =>'nome_completo', 
 	1 => 'nome_om',
-	2=> 'nome_curso'
+	2=> 'nome_curso',
+	3=> 'id_conteudista'
 );
 
 //Obtendo registros de número total sem qualquer pesquisa
@@ -42,7 +43,8 @@ while( $row_usuarios =mysqli_fetch_array($resultado_usuarios) ) {
 	$dado = array(); 
 	$dado[] = $row_usuarios["nome_completo"];
 	$dado[] = $row_usuarios["nome_om"];
-	$dado[] = $row_usuarios["nome_curso"];	
+	$dado[] = $row_usuarios["nome_curso"];
+	$dado[] = '<button class="btn" data-toggle="modal" data-target="#myModal"value="'.$row_usuarios["id_conteudista"].'"><i class="fa fa-pen"></i></button>'.'<button class="btn" data-toggle="modal" data-target="#myModalTrash"value="'.$row_usuarios["id_conteudista"].'"><i class="fa fa-trash"></i></button>';	
 	$dados[] = $dado;
 }
 

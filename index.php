@@ -95,7 +95,39 @@ if($idAcesso == 3){
     for (i = 0; i < x.length; i++) {
         x[i].style.display = 'none';
     }
-
+    $('#tableConteudistas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        },
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
+            "type": "POST",
+        },
+        "columnDefs": {
+                "target": 3,
+                "visible": false,
+                "searchable": false,
+            }
+        
+    });
+    </script>
+    <?php
+} elseif($idAcesso == 1) {
+    ?>
+    <script>
+    $('#tableConteudistas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        },
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
+            "type": "POST"
+        }
+    });
     </script>
     <?php
 }
