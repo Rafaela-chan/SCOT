@@ -41,10 +41,14 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" action="../app/Model/backend_om.php">
+                    <form method="post" action="../app/Model/conteudistas/backend_alterar.php">
                         <p>Altere as informações</p>
-                        <input type="text" class="form-control" value="{{alterar}}" name="nome_conteudista">
-                        <input type="submit" value="Cadastrar" style="margin-top: 30px;"
+                        <span>Nome:</span>
+                        <input type="text" class="form-control nome_conteudista" id="nome_conteudista" name="nome_conteudista">
+                        <span>CPF:</span>
+                        <input type="text" class="form-control cpf_conteudista" id="cpf_conteudista" name="cpf_conteudista">
+                        <input type="text" class="id_conteudista" id="id_conteudista" name="id_conteudista"hidden>
+                        <input type="submit" value="Alterar" style="margin-top: 30px;"
                             class="btn btn-success form-control">
                     </form>
                 </div>
@@ -62,10 +66,11 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" action="../app/Model/backend_om.php">
+                    <form method="post" action="../app/Model/conteudistas/backend_deletar.php">
                         <p>Deseja apagar?</p>
                         <p>Usuario:</p>
-                        <input type="text" class="form-control" value="Leandro" name="nome_conteudista" disabled>
+                        <input type="text" class="form-control nome_conteudista" id="nome_conteudista" name="nome_conteudista" disabled>
+                        <input type="text" class="id_conteudista" id="id_conteudista" name="id_conteudista"hidden>
                         <input type="submit" value="Excluir" style="margin-top: 30px;"
                             class="btn btn-danger form-control">
                     </form>

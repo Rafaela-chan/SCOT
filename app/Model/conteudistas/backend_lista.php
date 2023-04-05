@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "I3aD_2021*";
-$dbname = "conteudistas";
+$dbname = "sgcote";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -44,7 +44,7 @@ while( $row_usuarios =mysqli_fetch_array($resultado_usuarios) ) {
 	$dado[] = $row_usuarios["nome_completo"];
 	$dado[] = $row_usuarios["nome_om"];
 	$dado[] = $row_usuarios["nome_curso"];
-	$dado[] = '<button class="btn" data-toggle="modal" data-target="#myModal"value="'.$row_usuarios["id_conteudista"].'"><i class="fa fa-pen"></i></button>'.'<button class="btn" data-toggle="modal" data-target="#myModalTrash"value="'.$row_usuarios["id_conteudista"].'"><i class="fa fa-trash"></i></button>';	
+	$dado[] = '<button class="btn" data-toggle="modal" data-target="#myModal"value="'.$row_usuarios["id_conteudista"].'" onCLick="listaConteudistas('.$row_usuarios["id_conteudista"].');"><i class="fa fa-pen"></i></button>'.'<button class="btn" data-toggle="modal" data-target="#myModalTrash"value="'.$row_usuarios["id_conteudista"].'" onCLick="listaConteudistas('.$row_usuarios["id_conteudista"].')"><i class="fa fa-trash"></i></button>';	
 	$dados[] = $dado;
 }
 

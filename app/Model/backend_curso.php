@@ -5,7 +5,7 @@ $data=date("Ymd", strtotime($data_inicio));
 $servername = "localhost";
 $username = "root";
 $password = "I3aD_2021*";
-$dbname = "conteudistas";
+$dbname = "sgcote";
 
 
 if($nome_curso != null){  try {

@@ -4,7 +4,7 @@ $nome_om = $_POST['nome_om'];
 $servername = "localhost";
 $username = "root";
 $password = "I3aD_2021*";
-$dbname = "conteudistas";
+$dbname = "sgcote";
 
 if($nome_om != null){
   try {

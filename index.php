@@ -17,20 +17,19 @@ $usuario = new Usuario;
 
 
 ob_start();
-	$core = new Core;
-	$core->start($_GET);
+$core = new Core;
+$core->start($_GET);
 
-	$saida = ob_get_contents();
+$saida = ob_get_contents();
 ob_end_clean();
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $_SESSION['user'] = $_POST['user'];
     $_SESSION['pass'] = $_POST['password'];
     $_SESSION['logar'] = true;
-    
 }
 
-if(isset($_SESSION['logar'])){
+if (isset($_SESSION['logar'])) {
     $user = $_SESSION['user'];
     $pass = $_SESSION['pass'];
     $usuario->logar($user, $pass);
@@ -47,87 +46,92 @@ $saram = $usuario->getSaram();
 $cpf = $usuario->getCPF();
 $idAcesso = $usuario->getIdAcesso();
 
-if(isset($_GET['url'])){    
-    if($_GET['url'] == 'perfil'){
-        $cpfHide = $cpf[9].$cpf[10];
+if (isset($_GET['url'])) {
+    if ($_GET['url'] == 'perfil') {
+        $cpfHide = $cpf[9] . $cpf[10];
 
-        $saidaPronto = str_replace(array(
-            '{{cpf}}', '{{nome_completo}}',  '{{nome_guerra}}', '{{om}}', '{{saram}}'
-        ),
-        array(
-            $cpfHide, $nomeCompleto, $nomeGuerra, $om, $saram
-        ),
-        $saida
+        $saidaPronto = str_replace(
+            array(
+                '{{cpf}}', '{{nome_completo}}',  '{{nome_guerra}}', '{{om}}', '{{saram}}'
+            ),
+            array(
+                $cpfHide, $nomeCompleto, $nomeGuerra, $om, $saram
+            ),
+            $saida
         );
 
-        $tplPronto = str_replace(array(
-            '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
-        ),
-        array( 
-            $saidaPronto, $patente, $nomeGuerra
-        ), $template);
-    }else{
-        $tplPronto = str_replace(array(
-            '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
-        ),
-        array( 
-            $saida, $patente, $nomeGuerra
-        ), $template);
-        
+        $tplPronto = str_replace(
+            array(
+                '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+            ),
+            array(
+                $saidaPronto, $patente, $nomeGuerra
+            ),
+            $template
+        );
+    } else {
+        $tplPronto = str_replace(
+            array(
+                '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+            ),
+            array(
+                $saida, $patente, $nomeGuerra
+            ),
+            $template
+        );
     }
-}else{
-    $tplPronto = str_replace(array(
-        '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
-    ),
-    array( 
-        $saida, $patente, $nomeGuerra
-    ), $template);
-    
-} ;
+} else {
+    $tplPronto = str_replace(
+        array(
+            '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+        ),
+        array(
+            $saida, $patente, $nomeGuerra
+        ),
+        $template
+    );
+};
 echo $tplPronto;
 
 
-if($idAcesso == 3){
-    ?>
+if ($idAcesso == 3) {
+?>
     <script>
-    var x = document.getElementsByClassName("admin");
-    var i;
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = 'none';
-    }
-    $('#tableConteudistas').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
-        },
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
-            "type": "POST",
-        },
-        "columnDefs": {
-                "target": 3,
-                "visible": false,
-                "searchable": false,
-            }
-        
-    });
-    </script>
-    <?php
-} elseif($idAcesso == 1) {
-    ?>
-    <script>
-    $('#tableConteudistas').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
-        },
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
-            "type": "POST"
+        var x = document.getElementsByClassName("admin");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = 'none';
         }
-    });
+        $('#tableConteudistas').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            },
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
+                "type": "POST",
+            },
+            "columnDefs": [{ targets: [3], visible: false}]
+        });
     </script>
-    <?php
+<?php
+} elseif ($idAcesso == 1) {
+?>
+    <script>
+      $('#tableConteudistas').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            },
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
+                "type": "POST",
+            },
+            "columnDefs": [{ targets: '_all', visible: true}]
+        });
+        
+    </script>
+<?php
 }

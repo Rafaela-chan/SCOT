@@ -7,7 +7,7 @@ $id_om = $_POST['id_om'];
 $servername = "localhost";
 $username = "root";
 $password = "I3aD_2021*";
-$dbname = "conteudistas";
+$dbname = "sgcote";
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

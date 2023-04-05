@@ -49,6 +49,34 @@ function dropTutor() {
     });
 }
 
+function listaConteudistas(id_conteudista) {
+    $.ajax({
+        type: 'GET',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
+        data: {
+            id_conteudista: id_conteudista,
+            acao: 'listaConteudistas' //Envia esse dado como GET para o webservice 
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            var x = document.getElementsByClassName("nome_conteudista");
+            var y = document.getElementsByClassName("cpf_conteudista");
+            var z = document.getElementsByClassName("id_conteudista");
+            var i;
+            for (i = 0; i < x.length; i++) {
+            x[i].value = data.nome_completo[0];
+            }
+            for (i = 0; i < y.length; i++) {
+                y[i].value = data.cpf[0];
+            }
+            for (i = 0; i < z.length; i++) {
+                z[i].value = data.id_conteudista[0];
+            }
+        }
+    });
+}
+
 function dropCursos() {
     $.ajax({
         type: 'GET',

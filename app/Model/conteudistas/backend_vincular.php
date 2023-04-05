@@ -8,7 +8,7 @@ echo $id_conteudista;
 $servername = "localhost";
 $username = "root";
 $password = "I3aD_2021*";
-$dbname = "conteudistas";
+$dbname = "sgcote";
 
 if($id_conteudista != null && $id_curso != null){  try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
