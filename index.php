@@ -11,6 +11,7 @@ require_once 'app/Controller/PerfilController.php';
 require_once 'app/Controller/DeslogarController.php';
 require_once 'app/Controller/TutoresController.php';
 require_once 'app/Controller/AdicionarController.php';
+require_once 'app/Controller/UsersController.php';
 
 $template = file_get_contents('app/Template1/estrutura.html');
 $usuario = new Usuario;
@@ -112,14 +113,17 @@ if ($idAcesso == 3) {
                 "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
                 "type": "POST",
             },
-            "columnDefs": [{ targets: [3], visible: false}]
+            "columnDefs": [{
+                targets: [3],
+                visible: false
+            }]
         });
     </script>
 <?php
 } elseif ($idAcesso == 1) {
 ?>
     <script>
-      $('#tableConteudistas').DataTable({
+        $('#tableConteudistas').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
             },
@@ -129,9 +133,26 @@ if ($idAcesso == 3) {
                 "url": "/SGCOTE/app/Model/conteudistas/backend_lista.php",
                 "type": "POST",
             },
-            "columnDefs": [{ targets: '_all', visible: true}]
+            "columnDefs": [{
+                targets: '_all',
+                visible: true
+            }]
         });
-        
+        $('#tableUsuarios').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            },
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/SGCOTE/app/Model/backend_users.php",
+                "type": "POST",
+            },
+            "columnDefs": [{
+                targets: '_all',
+                visible: true
+            }]
+        });
     </script>
 <?php
 }

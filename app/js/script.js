@@ -50,6 +50,8 @@ function dropTutor() {
 }
 
 function listaConteudistas(id_conteudista) {
+   var id_om = 0;
+   console.log(id_om);
     $.ajax({
         type: 'GET',
         url: '../../../../SGCOTE/app/Model/webservice.php',
@@ -60,6 +62,8 @@ function listaConteudistas(id_conteudista) {
         dataType: 'json',
         success: function (data) {
             console.log(data);
+            var a = document.getElementsByClassName("id_om");
+            var b = document.getElementsByClassName("curso_conteudista");
             var x = document.getElementsByClassName("nome_conteudista");
             var y = document.getElementsByClassName("cpf_conteudista");
             var z = document.getElementsByClassName("id_conteudista");
@@ -73,8 +77,33 @@ function listaConteudistas(id_conteudista) {
             for (i = 0; i < z.length; i++) {
                 z[i].value = data.id_conteudista[0];
             }
+            for (i = 0; i < a.length; i++) {
+                a[i].value = data.id_om[0];
+                $('option[name=nome_om]').empty();
+                $('option[name=nome_om]').append(data.nome_om[0]);
+            }
+            for (i = 0; i < b.length; i++) {
+                b[i].value = data.nome_curso[0];
+                $('option[name=nome_curso]').empty();
+                $('option[name=nome_curso]').append(data.nome_curso[0]);
+            }
+        
         }
     });
+    $.ajax({
+        type: 'GET',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
+        data: {
+            acao: 'dropOm' //Envia esse dado como GET para o webservice 
+        },
+        dataType: 'json',
+        success: function (data) {
+            for (i = 0; i < data.qtd; i++) {
+                $('select[name=om_conteudista]').append('<option value="' + data.id_om[i] + '">' + data.nome_om[i] + '</option>');
+            }
+        }
+    });
+
 }
 
 function dropCursos() {

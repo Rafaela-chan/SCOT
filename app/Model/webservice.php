@@ -65,14 +65,18 @@ $sql = '';
 }
 
 if($_GET['acao'] == 'listaConteudistas'){
-	$sql = $pdo->prepare("SELECT conteudista.id_conteudista, conteudista.nome_completo, conteudista.cpf, lista_conteudista.id_curso, curso.nome_curso, om.nome_om FROM conteudista LEFT JOIN lista_conteudista ON conteudista.id_conteudista = lista_conteudista.id_conteudista LEFT JOIN curso ON lista_conteudista.id_curso = curso.id_curso LEFT JOIN om ON conteudista.id_om = om.id_om WHERE conteudista.id_conteudista = ".$_GET['id_conteudista']);
+	$sql = $pdo->prepare("SELECT conteudista.id_conteudista, conteudista.nome_completo, conteudista.cpf, lista_conteudista.id_curso, curso.nome_curso, conteudista.id_om, om.nome_om FROM conteudista LEFT JOIN lista_conteudista ON conteudista.id_conteudista = lista_conteudista.id_conteudista LEFT JOIN curso ON lista_conteudista.id_curso = curso.id_curso LEFT JOIN om ON conteudista.id_om = om.id_om WHERE conteudista.id_conteudista = ".$_GET['id_conteudista']);
 	$sql->execute();
 	$n = 0;
 	$retorno['qtd'] = $sql->rowCount();
 	while($ln = $sql->fetchObject()){
 		$retorno['id_conteudista'][$n] = $ln->id_conteudista;
 		$retorno['nome_completo'][$n] = $ln->nome_completo;
-		$retorno['cpf'][$n] = $ln->cpf;
+		$retorno['cpf'][$n] = $ln->cpf;		
+		$retorno['id_curso'][$n] = $ln->id_curso;
+		$retorno['nome_curso'][$n] = $ln->nome_curso;
+		$retorno['id_om'][$n] = $ln->id_om;
+		$retorno['nome_om'][$n] = $ln->nome_om;
 		$n++;
 	}
 	$sql = '';	
