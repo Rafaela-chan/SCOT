@@ -25,7 +25,7 @@ $saida = ob_get_contents();
 ob_end_clean();
 
 if (isset($_POST['submit'])) {
-    $_SESSION['user'] = $_POST['user'];
+    $_SESSION['user'] = str_replace(array('.','-','/'), "", $_POST['user']);
     $_SESSION['pass'] = $_POST['password'];
     $_SESSION['logar'] = true;
 }
