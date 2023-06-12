@@ -161,6 +161,9 @@ class Usuario extends Conexao
                     $_SESSION['mensagem'] = 2;
                     header("Location: ../../../../SGCOTE/deslogar");
                 }
+            }else {
+                $_SESSION['mensagem'] = 1;
+                header("Location: ../../../../SGCOTE/deslogar");
             }
         } catch (Exception $e) {
             echo "Erro: " . $e->getMessage();
