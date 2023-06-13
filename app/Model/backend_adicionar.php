@@ -24,7 +24,7 @@ if($nome_usuario != null){
         //echo "New record created successfully";
         echo "<script> alert('Usuário Cadastrado.'); window.location.href='../../'</script>";
     } catch(PDOException $e) {
-      echo $sql . "<br>" . $e->getMessage(); 
+      header("Location: erro.html"); 
       }
 }else{
   echo "<script> alert('Insira um nome!'); window.location.href='../../';</script>";
