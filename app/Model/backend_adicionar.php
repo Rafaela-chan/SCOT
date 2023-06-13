@@ -18,16 +18,19 @@ if($nome_usuario != null){
         //retirando a mascara do CPF
 
         $sql = "INSERT INTO `usuario` (`cpf`, `id_acesso`, `nome_usuario`) 
-        VALUES ('$cpf','$id_acesso','$nome_usuario')";
+        VALUES ('$cpf1','$id_acesso','$nome_usuario')";
         $conn->exec($sql);
 
         //echo "New record created successfully";
-        echo "<script> alert('Usuário Cadastrado.'); window.location.href='../../'</script>";
+        echo "<script> alert('Usuário Cadastrado.'); window.location.href='../../users'</script>";
     } catch(PDOException $e) {
-      header("Location: erro.html"); 
+      $_SESSION["mensagem"] = "<div class='alert alert-warning' role='alert'>
+      Erro no cadastro! Tente novamente.
+    </div>";
+      header("Location: ../../adicionar"); 
       }
 }else{
-  echo "<script> alert('Insira um nome!'); window.location.href='../../';</script>";
+  echo "<script> alert('Insira um nome!'); window.location.href='../../adicionar';</script>";
 }
 
 $conn = null;
