@@ -35,21 +35,21 @@
 
 </div>
 <!-- /.container-fluid -->
- <!-- Corpo do Modal Edit-->
- <div class="col">
+<!-- Corpo do Modal Edit-->
+<div class="col">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" action="../app/Model/conteudistas/backend_alterar.php">
+                    <form method="post" action="../SGCOTE/app/Model/usuarios/backend_alterar.php">
                         <p>Altere as informações</p>
                         <span>Nome:</span>
-                        <input type="text" class="form-control nome_conteudista" id="nome_conteudista" name="nome_conteudista">
+                        <input type="text" class="form-control nome_usuario" id="nome_usuario" name="nome_usuario">
                         <span>CPF:</span>
-                        <input type="text" class="form-control cpf_conteudista" id="cpf_conteudista" name="cpf_conteudista">
-                        <input type="text" class="form-control om_conteudista" id="om_conteudista" name="om_conteudista">
-                        <input type="text" class="form-control curso_conteudista" id="curso_conteudista" name="curso_conteudista">
-                        <input type="text" class="id_conteudista" id="id_conteudista" name="id_conteudista"hidden>
+                        <input type="text" class="form-control cpf_usuario" id="cpf_usuario" name="cpf_usuario">
+                        <span>Acesso:</span>
+                        <select type="text" class="form-control acesso_usuario" name="acesso_usuario" id ="acesso_usuario" name="acesso_usuario"></select>
+                        <input type="text" class="form-control id_usuario" id="id_usuario" name="id_usuario" hidden>
                         <input type="submit" value="Alterar" style="margin-top: 30px;"
                             class="btn btn-success form-control">
                     </form>
@@ -62,17 +62,18 @@
     </div>
 </div>
 
- <!-- Corpo do Modal Trash-->
- <div class="col">
+<!-- Corpo do Modal Trash-->
+<div class="col">
     <div class="modal fade" id="myModalTrash" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" action="../app/Model/conteudistas/backend_deletar.php">
+                    <form method="post" action="../SGCOTE/app/Model/usuarios/backend_deletar.php">
                         <p>Deseja apagar?</p>
                         <p>Usuario:</p>
-                        <input type="text" class="form-control nome_conteudista" id="nome_conteudista" name="nome_conteudista" disabled>
-                        <input type="text" class="id_conteudista" id="id_conteudista" name="id_conteudista"hidden>
+                        <input type="text" class="form-control nome_usuario" id="nome_usuario" name="nome_usuario"
+                            disabled>
+                        <input type="text" class="id_usuario" id="id_usuario" name="id_usuario" hidden>
                         <input type="submit" value="Excluir" style="margin-top: 30px;"
                             class="btn btn-danger form-control">
                     </form>

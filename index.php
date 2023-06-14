@@ -148,10 +148,18 @@ if ($idAcesso == 3) {
                 "url": "/SGCOTE/app/Model/backend_users.php",
                 "type": "POST",
             },
-            "columnDefs": [{
+            /*"columnDefs": [{
                 targets: '_all',
                 visible: true
-            }]
+            }],*/
+            "columnDefs": [{
+                "targets": [2],
+                "visible": true,
+                "searchable": false,
+                "render": function(data, type, row) {
+        return "***.***.***-" + data.substring(9,11);
+      },
+    }]
         });
     </script>
 <?php

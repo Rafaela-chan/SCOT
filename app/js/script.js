@@ -92,6 +92,7 @@ function listaConteudistas(id_conteudista) {
             }
         }
     });
+
     $.ajax({
         type: 'GET',
         url: '../../../../SGCOTE/app/Model/webservice.php',
@@ -100,7 +101,7 @@ function listaConteudistas(id_conteudista) {
         },
         dataType: 'json',
         success: function (data) {
-            
+
             var conteudo = document.getElementById("id_om").value;
             for (i = 0; i < data.qtd; i++) {
                 if (data.id_om[i] != conteudo) {
@@ -128,6 +129,61 @@ function listaConteudistas(id_conteudista) {
         }
     });
 
+}
+
+// Função para atribuir dados na alteração dos Usuarios
+function listaUsuarios(id_usuario) {
+    $('select[name=acesso_usuario]').empty();
+    $('select[name=acesso_usuario]').append('<option id = "id_acesso" class="id_acesso" value="" name="id_acesso"></option>');
+    $.ajax({
+        type: 'GET',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
+        data: {
+            id_usuario: id_usuario,
+            acao: 'listaUsuarios' //Envia esse dado como GET para o webservice 
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            var nome_usuario = document.getElementsByClassName("nome_usuario");
+            var cpf = document.getElementsByClassName("cpf_usuario");
+            var id_usuario = document.getElementsByClassName("id_usuario");
+            var id_acesso = document.getElementsByClassName("id_acesso");
+            var i;
+            for (i = 0; i < nome_usuario.length; i++) {
+                nome_usuario[i].value = data.nome_usuario[0];
+            }
+            for (i = 0; i < cpf.length; i++) {
+                cpf[i].value = data.cpf[0];
+            }
+            for (i = 0; i < id_usuario.length; i++) {
+                id_usuario[i].value = data.id_usuario[0];
+            }
+            for (i = 0; i < id_acesso.length; i++) {
+                id_acesso[i].value = data.id_acesso[0];
+                $('option[name=id_acesso]').empty();
+                $('option[name=id_acesso]').append(data.nome_acesso[0]);
+            }
+        }
+    });
+    $.ajax({
+        type: 'GET',
+        url: '../../../../SGCOTE/app/Model/webservice.php',
+        data: {
+            acao: 'dropAcesso' //Envia esse dado como GET para o webservice 
+        },
+        dataType: 'json',
+        success: function (data) {
+            var conteudo_usuario = document.getElementById("id_acesso").value;
+        
+            for (i = 0; i < data.qtd; i++) {
+                if (data.id_acesso[i] != conteudo_usuario) {
+                    console.log(data.id_acesso[i]);
+                    $('select[name=acesso_usuario]').append('<option value="' + data.id_acesso[i] + '">' + data.nome_acesso[i] + '</option>');
+                }
+            }
+        }
+    });
 }
 
 function dropCursos() {

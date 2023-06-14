@@ -82,7 +82,21 @@ if($_GET['acao'] == 'listaConteudistas'){
 	$sql = '';	
 }
 
-
+if($_GET['acao'] == 'listaUsuarios'){
+	$sql = $pdo->prepare("SELECT usuario.id_usuario, usuario.nome_usuario, usuario.cpf, usuario.id_acesso, acesso.nome_acesso FROM usuario LEFT JOIN acesso ON usuario.id_acesso = acesso.id_acesso WHERE usuario.id_usuario = ".$_GET['id_usuario']);
+	$sql->execute();
+	$n = 0;
+	$retorno['qtd'] = $sql->rowCount();
+	while($ln = $sql->fetchObject()){
+		$retorno['id_usuario'][$n] = $ln->id_usuario;
+		$retorno['nome_usuario'][$n] = $ln->nome_usuario;
+		$retorno['cpf'][$n] = $ln->cpf;		
+		$retorno['id_acesso'][$n] = $ln->id_acesso;
+		$retorno['nome_acesso'][$n] = $ln->nome_acesso;
+		$n++;
+	}
+	$sql = '';	
+}
 
 if($_GET['acao'] == 'dropAcesso'){
 	$sql = $pdo->prepare("SELECT * FROM acesso ORDER BY id_acesso");
