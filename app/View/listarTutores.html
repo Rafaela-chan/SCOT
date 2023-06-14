@@ -1,0 +1,91 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Tutores</h1>
+    <hr>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Listagem de conteudistas</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered display" id="tableTutores" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>OM</th>
+                            <th>Curso</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>OM</th>
+                            <th>Curso</th>
+                            <th>Edit</th>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+ <!-- Corpo do Modal Edit -->
+ <div class="col">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form method="post" action="../app/Model/conteudistas/backend_alterar.php">
+                        <p>Altere as informações</p>
+                        <span>Nome</span>
+                        <input type="text" class="form-control nome_conteudista" id="nome_conteudista" name="nome_conteudista">
+                        <span>CPF</span>
+                        <input type="text" class="form-control cpf_conteudista" id="cpf_conteudista" name="cpf_conteudista">
+                        <span>OM</span>
+                        <select type="text" class="form-control om_conteudista" name="om_conteudista" id ="om_conteudista" name="om_conteudista">
+                        </select>
+                        <span>Curso</span>
+                        <select type="text" class="form-control curso_conteudista" id ="curso_conteudista" name="curso_conteudista">
+                        </select>
+                        <input type="text" class="id_conteudista" id="id_conteudista" name="id_conteudista"hidden>
+                        <input type="submit" value="Alterar" style="margin-top: 30px;"
+                            class="btn btn-success form-control">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- Corpo do Modal -->
+ <div class="col">
+    <div class="modal fade" id="myModalTrash" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form method="post" action="../app/Model/conteudistas/backend_deletar.php">
+                        <p>Deseja apagar?</p>
+                        <p>Usuario:</p>
+                        <input type="text" class="form-control nome_conteudista" id="nome_conteudista" name="nome_conteudista" disabled>
+                        <input type="text" class="id_conteudista" id="id_conteudista" name="id_conteudista"hidden>
+                        <input type="submit" value="Excluir" style="margin-top: 30px;"
+                            class="btn btn-danger form-control">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Main Content -->

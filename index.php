@@ -138,6 +138,21 @@ if ($idAcesso == 3) {
                 visible: true
             }]
         });
+        $('#tableTutores').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            },
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/SGCOTE/app/Model/tutores/backend_lista.php",
+                "type": "POST",
+            },
+            "columnDefs": [{
+                targets: '_all',
+                visible: true
+            }]
+        });
         $('#tableUsuarios').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
