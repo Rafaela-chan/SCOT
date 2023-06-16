@@ -44,7 +44,7 @@ while( $row_usuarios =mysqli_fetch_array($resultado_usuarios) ) {
 	$dado[] = $row_usuarios["nome_completo"];
 	$dado[] = $row_usuarios["nome_om"];
 	$dado[] = $row_usuarios["nome_curso"];
-	$dado[] = '<button class="btn" data-toggle="modal" data-target="#myModal"value="'.$row_usuarios["id_tutor"].'" onCLick="listatutores('.$row_usuarios["id_tutor"].');"><i class="fa fa-pen"></i></button>'.'<button class="btn" data-toggle="modal" data-target="#myModalTrash"value="'.$row_usuarios["id_tutor"].'" onCLick="listatutores('.$row_usuarios["id_tutor"].')"><i class="fa fa-trash"></i></button>';	
+	$dado[] = '<button class="btn" data-toggle="modal" data-target="#myModal"value="'.$row_usuarios["id_tutor"].'" onCLick="listaTutores('.$row_usuarios["id_tutor"].');"><i class="fa fa-pen"></i></button>'.'<button class="btn" data-toggle="modal" data-target="#myModalTrash"value="'.$row_usuarios["id_tutor"].'" onCLick="listaTutores('.$row_usuarios["id_tutor"].')"><i class="fa fa-trash"></i></button>';	
 	$dados[] = $dado;
 }
 

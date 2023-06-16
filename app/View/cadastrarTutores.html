@@ -5,25 +5,47 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Cadastrar</h6>
         </div>
-        <div class="card-body mt-5">
-            <div class="chart-area">
-                <form method="post" action="../app/Model/tutores/backend_tutor.php">
-                    <div class="row">
-                        <div class="col">
-                            <p>CPF</p>
-                            <input type="text" class="form-control" id="email" placeholder="Digite o CPF" name="cpf">
-                        </div>
-                        <div class="col">
-                            <p>Nome Completo</p>
-                            <input type="text" class="form-control" placeholder="Nome Completo" name="nome_completo">
-                        </div>
-                        <div class="col">
-                            <p>Nome de Guerra</p>
-                            <input type="text" class="form-control" placeholder="Nome de Guerra (Em caso de militares)"
-                                name="nome_guerra">
+        <div class="card-body">
+            <form method="post" action="../app/Model/tutores/backend_tutor.php">
+                <div class="col">
+                    CPF
+                    <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-09');" id="email"
+                        placeholder="Digite o CPF" name="cpf" required> <br>
+                    Nome Completo
+                    <input type="text" class="form-control" placeholder="Nome Completo" name="nome_completo" required>
+                    <br>
+                    E-mail
+                    <input type="text" class="form-control" placeholder="Email" name="email" required>
+                    <br>
+                    Telefone
+                    <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0009')"
+                        placeholder="Telefone" name="telefone" required>
+                    <br>
+                    <div class="col">
+                        <div class="row">
+                            É Militar?
+                            <div class="col">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="militarCheck" name="militarCheck"
+                                        value="show">
+                                </div>
+                            </div>
+                        </div><br>
+                        <div id="militarShow" name="militarShow">
+
+                            <div class="row">
+                                Nome de Guerra
+                                <input type="text" class="form-control"
+                                    placeholder="Nome de Guerra (Em caso de militares)" name="nome_guerra">
+                            </div><br>
+                            <div class="row">
+                                Posto
+                                <input type="text" class="form-control" placeholder="Posto (Em caso de militares)"
+                                    name="posto">
+                            </div>
+                            <br>
                         </div>
                     </div>
-                    <br>
                     <div class="form-row">
                         <div class="col">
                             OM
@@ -37,18 +59,23 @@
                                 data-target="#myModal">Adicionar OM</button>
                         </div>
                     </div>
-                    <!-- Estruta dos botões -->
-                    <div class="form-row">
-                        <div class="col">
-                            <input type="submit" value="Cadastrar Conteudista" style="margin-top: 30px;"
-                                class="btn btn-success form-control">
-                        </div>
-                        <div class="col">
-                            <a href="" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao menu</a>
-                        </div>
+                </div>
+
+
+
+                <!-- Estruta dos botões -->
+                <div class="form-row">
+                    <div class="col">
+                        <input type="submit" value="Cadastrar tutor" style="margin-top: 30px;"
+                            class="btn btn-success form-control">
                     </div>
-                </form>
-            </div>
+                    <div class="col">
+                        <a href="../../SGCOTE" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao
+                            menu</a>
+                    </div>
+                </div>
+            </form>
+
 
             <!-- Corpo do Modal -->
             <div class="col">
@@ -72,8 +99,4 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
 </div>

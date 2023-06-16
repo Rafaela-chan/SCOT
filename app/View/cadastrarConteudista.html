@@ -6,42 +6,46 @@
             <h6 class="m-0 font-weight-bold text-primary">Cadastrar</h6>
         </div>
         <div class="card-body">
-                <form method="post" action="../app/Model/conteudistas/backend_professor.php">
+            <form method="post" action="../app/Model/conteudistas/backend_professor.php">
+                <div class="col">
+                    CPF
+                    <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-09');" id="email"
+                        placeholder="Digite o CPF" name="cpf" required> <br>
+                    Nome Completo
+                    <input type="text" class="form-control" placeholder="Nome Completo" name="nome_completo" required>
+                    <br>
+                    E-mail
+                    <input type="text" class="form-control" placeholder="Email" name="email" required>
+                    <br>
+                    Telefone
+                    <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0009')"
+                        placeholder="Telefone" name="telefone" required>
+                    <br>
                     <div class="col">
-                        CPF
-                        <input type="text" class="form-control" onkeypress="$(this).mask('###.###.###-##');" id="email" placeholder="Digite o CPF" name="cpf"  required> <br>
-                        Nome Completo
-                        <input type="text" class="form-control" placeholder="Nome Completo" name="nome_completo" required> <br>
-                        Nome de Guerra
-                        <input type="text" class="form-control" placeholder="Nome de Guerra (Em caso de militares)" name="nome_guerra"> <br>
-                    <div class="col">
-                        <div class="row">
-                           Telefone
-                            <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0009')" placeholder="Telefone" name="telefone" required>
-                        </div>
-                        <br>
-                        <div class="row">
-                            Posto
-                            <input type="text" class="form-control" placeholder="Posto (Em caso de militares)" name="posto" >
-                        </div>
-                        <br>
                         <div class="row">
                             É Militar?
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="radio" name="militar" type="radio" value="1" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Sim
-                                    </label> <br>
-                                    <input class="radio" name="militar" type="radio" value="0" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Não
-                                    </label>
+                                    <input type="checkbox" class="form-check-input" id="militarCheck" name="militarCheck"
+                                        value="show">
                                 </div>
                             </div>
+                        </div><br>
+                        <div id="militarShow" name="militarShow">
+
+                            <div class="row">
+                                Nome de Guerra
+                                <input type="text" class="form-control"
+                                    placeholder="Nome de Guerra (Em caso de militares)" name="nome_guerra">
+                            </div><br>
+                            <div class="row">
+                                Posto
+                                <input type="text" class="form-control" placeholder="Posto (Em caso de militares)"
+                                    name="posto">
+                            </div>
+                            <br>
                         </div>
                     </div>
-                    <br>
                     <div class="form-row">
                         <div class="col">
                             OM
@@ -55,21 +59,23 @@
                                 data-target="#myModal">Adicionar OM</button>
                         </div>
                     </div>
-                        
-                    
-                    <!-- Estruta dos botões -->
-                    <div class="form-row">
-                        <div class="col">
-                            <input type="submit" value="Cadastrar Conteudista" style="margin-top: 30px;"
-                                class="btn btn-success form-control">
-                        </div>
-                        <div class="col">
-                            <a href="../../SGCOTE" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao
-                                menu</a>
-                        </div>
+                </div>
+
+
+
+                <!-- Estruta dos botões -->
+                <div class="form-row">
+                    <div class="col">
+                        <input type="submit" value="Cadastrar Conteudista" style="margin-top: 30px;"
+                            class="btn btn-success form-control">
                     </div>
-                </form>
-            
+                    <div class="col">
+                        <a href="../../SGCOTE" style="margin-top: 30px;" class="btn btn-info form-control">Voltar ao
+                            menu</a>
+                    </div>
+                </div>
+            </form>
+
 
             <!-- Corpo do Modal -->
             <div class="col">

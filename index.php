@@ -1,7 +1,6 @@
 <?php
-
+//Requerimento de Controllers
 require_once 'app/Core/Core.php';
-
 require_once 'app/Controller/LoginController.php';
 require_once 'app/Controller/Usuario.php';
 require_once 'app/Controller/HomeController.php';
@@ -13,32 +12,38 @@ require_once 'app/Controller/TutoresController.php';
 require_once 'app/Controller/AdicionarController.php';
 require_once 'app/Controller/UsersController.php';
 
+//Importação do template
 $template = file_get_contents('app/Template1/estrutura.html');
+
+//Criação do Usuário
 $usuario = new Usuario;
 
-
+//Iniciando o Objeto(CORE)
 ob_start();
 $core = new Core;
 $core->start($_GET);
-
 $saida = ob_get_contents();
 ob_end_clean();
 
+
+//Essa função é responsável por verificar se houve o login definir os parametros do usuário logado
 if (isset($_POST['submit'])) {
-    $_SESSION['user'] = str_replace(array('.','-','/'), "", $_POST['user']);
+    $_SESSION['user'] = str_replace(array('.', '-', '/'), "", $_POST['user']);
     $_SESSION['pass'] = $_POST['password'];
     $_SESSION['logar'] = true;
 }
 
+//Função para pegar informações o usuário logado
 if (isset($_SESSION['logar'])) {
     $user = $_SESSION['user'];
     $pass = $_SESSION['pass'];
     $usuario->logar($user, $pass);
 }
 
-
+//Função verificar login 
 $usuario->verificarLogin();
 
+//Funções para pegar todas as informações do usuário
 $nomeGuerra = $usuario->getNomeGuerra();
 $patente = $usuario->getPatente();
 $nomeCompleto = $usuario->getNomeCompleto();
@@ -47,36 +52,53 @@ $saram = $usuario->getSaram();
 $cpf = $usuario->getCPF();
 $idAcesso = $usuario->getIdAcesso();
 
+
 if (isset($_GET['url'])) {
     if ($_GET['url'] == 'perfil') {
         $cpfHide = $cpf[9] . $cpf[10];
 
         $saidaPronto = str_replace(
             array(
-                '{{cpf}}', '{{nome_completo}}',  '{{nome_guerra}}', '{{om}}', '{{saram}}'
+                '{{cpf}}',
+                '{{nome_completo}}',
+                '{{nome_guerra}}',
+                '{{om}}',
+                '{{saram}}'
             ),
             array(
-                $cpfHide, $nomeCompleto, $nomeGuerra, $om, $saram
+                $cpfHide,
+                $nomeCompleto,
+                $nomeGuerra,
+                $om,
+                $saram
             ),
             $saida
         );
 
         $tplPronto = str_replace(
             array(
-                '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+                '{{area_dinamica}}',
+                '{{patente}}',
+                '{{nome_guerra}}'
             ),
             array(
-                $saidaPronto, $patente, $nomeGuerra
+                $saidaPronto,
+                $patente,
+                $nomeGuerra
             ),
             $template
         );
     } else {
         $tplPronto = str_replace(
             array(
-                '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+                '{{area_dinamica}}',
+                '{{patente}}',
+                '{{nome_guerra}}'
             ),
             array(
-                $saida, $patente, $nomeGuerra
+                $saida,
+                $patente,
+                $nomeGuerra
             ),
             $template
         );
@@ -84,19 +106,24 @@ if (isset($_GET['url'])) {
 } else {
     $tplPronto = str_replace(
         array(
-            '{{area_dinamica}}', '{{patente}}', '{{nome_guerra}}'
+            '{{area_dinamica}}',
+            '{{patente}}',
+            '{{nome_guerra}}'
         ),
         array(
-            $saida, $patente, $nomeGuerra
+            $saida,
+            $patente,
+            $nomeGuerra
         ),
         $template
     );
-};
+}
+;
 echo $tplPronto;
 
 
 if ($idAcesso == 3) {
-?>
+    ?>
     <script>
         var x = document.getElementsByClassName("admin");
         var i;
@@ -119,9 +146,9 @@ if ($idAcesso == 3) {
             }]
         });
     </script>
-<?php
+    <?php
 } elseif ($idAcesso == 1) {
-?>
+    ?>
     <script>
         $('#tableConteudistas').DataTable({
             "language": {
@@ -163,19 +190,35 @@ if ($idAcesso == 3) {
                 "url": "/SGCOTE/app/Model/backend_users.php",
                 "type": "POST",
             },
-            /*"columnDefs": [{
-                targets: '_all',
-                visible: true
-            }],*/
+
             "columnDefs": [{
                 "targets": [2],
                 "visible": true,
                 "searchable": false,
-                "render": function(data, type, row) {
-        return "***.***.***-" + data.substring(9,11);
-      },
-    }]
+                "render": function (data, type, row) {
+                    return "***.***.***-" + data.substring(9, 11);
+                },
+            }]
+        });
+
+        //Função - Para exibir caixa de itens de militar para o cadastro
+        $(document).ready(function () {
+            var div = document.getElementById("militarShow");
+            div.style.display = "none";
+            $("input[name$='militarCheck']").click(function () {
+                var check = document.getElementsByName("militarCheck");
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].checked == true) {
+                        // CheckBox Marcado... Faça alguma coisa...
+                        div.style.display = "block";
+                    } else {
+                        // CheckBox Não Marcado... Faça alguma outra coisa...
+                        div.style.display = "none";
+                    }
+                }
+
+            });
         });
     </script>
-<?php
+    <?php
 }

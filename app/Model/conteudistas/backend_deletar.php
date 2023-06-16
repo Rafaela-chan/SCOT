@@ -10,7 +10,7 @@ try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $sql = "DELETE FROM conteudista WHERE `conteudista`.`id_conteudista` = $id_conteudista";
+  $sql = "DELETE FROM lista_conteudista WHERE `lista_conteudista`.`id_conteudista` = $id_conteudista; DELETE FROM conteudista WHERE `conteudista`.`id_conteudista` = $id_conteudista";
   $conn->exec($sql);
   echo "<script> alert('Conteudista deletado.'); window.location.href='../../../conteudistas/listar';</script>";
 } catch(PDOException $e) {

@@ -82,6 +82,24 @@ if($_GET['acao'] == 'listaConteudistas'){
 	$sql = '';	
 }
 
+if($_GET['acao'] == 'listaTutores'){
+	$sql = $pdo->prepare("SELECT tutor.id_tutor, tutor.nome_completo, tutor.cpf, lista_tutor.id_curso, curso.nome_curso, tutor.id_om, om.nome_om FROM tutor LEFT JOIN lista_tutor ON tutor.id_tutor = lista_tutor.id_tutor LEFT JOIN curso ON lista_tutor.id_curso = curso.id_curso LEFT JOIN om ON tutor.id_om = om.id_om WHERE tutor.id_tutor = ".$_GET['id_tutor']);
+	$sql->execute();
+	$n = 0;
+	$retorno['qtd'] = $sql->rowCount();
+	while($ln = $sql->fetchObject()){
+		$retorno['id_tutor'][$n] = $ln->id_tutor;
+		$retorno['nome_completo'][$n] = $ln->nome_completo;
+		$retorno['cpf'][$n] = $ln->cpf;		
+		$retorno['id_curso'][$n] = $ln->id_curso;
+		$retorno['nome_curso'][$n] = $ln->nome_curso;
+		$retorno['id_om'][$n] = $ln->id_om;
+		$retorno['nome_om'][$n] = $ln->nome_om;
+		$n++;
+	}
+	$sql = '';	
+}
+
 if($_GET['acao'] == 'listaUsuarios'){
 	$sql = $pdo->prepare("SELECT usuario.id_usuario, usuario.nome_usuario, usuario.cpf, usuario.id_acesso, acesso.nome_acesso FROM usuario LEFT JOIN acesso ON usuario.id_acesso = acesso.id_acesso WHERE usuario.id_usuario = ".$_GET['id_usuario']);
 	$sql->execute();
